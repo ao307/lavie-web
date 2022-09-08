@@ -51,6 +51,7 @@ class AppCubit extends Cubit<AppStates> {
 
   Future<void> changeIndexOfTitle(int index) async {
     currentIndexOfTitle = index;
+
     emit(AppChangeTitleBar());
   }
 

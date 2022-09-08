@@ -97,7 +97,7 @@ class ForumsItem extends StatelessWidget {
         ),
         if (forums!.imageUrl != null)
           AspectRatio(
-            aspectRatio: 16 / 9,
+            aspectRatio: 16 / 6,
             child: CachedNetworkImage(
               imageUrl: forums!.imageUrl != null
                   ? baseApiUrl + forums!.imageUrl!

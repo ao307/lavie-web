@@ -4,7 +4,9 @@ import 'package:lavie_web/shared/components/image_assets.dart';
 import 'package:lavie_web/shared/cubit/cubit.dart';
 
 import '../../modules/auth_screens/auth_widgets/ritch_text_button_.dart';
+import '../../modules/forums_screen/forums_screen.dart';
 import '../../shared/components/constants.dart';
+import '../../shared/components/reuse_functions.dart';
 import '../../shared/cubit/states.dart';
 
 class BaseWidget extends StatelessWidget {
@@ -41,7 +43,11 @@ class BaseWidget extends StatelessWidget {
                         (index) => ReuseTextButton(
                           text: appCubit.appBarTitles[index],
                           isSelected: index == appCubit.currentIndexOfTitle,
-                          onPressed: () => appCubit.changeIndexOfTitle(index),
+                          onPressed: () {
+                            if (index == 4) {
+                              showToast(msg: 'msg');
+                            }
+                          } ,
                         ),
                       ),
                     ),

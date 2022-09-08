@@ -8,6 +8,7 @@ import 'package:lavie_web/shared/components/reuse_functions.dart';
 import 'package:lavie_web/shared/cubit/forums_cubit/forums_cubit.dart';
 
 import '../../shared/components/tap_bar_reuse.dart';
+import '../../shared/components/widgets.dart';
 import '../../shared/cubit/forums_cubit/forums_states.dart';
 import '../create_post_screen/create_post_screen.dart';
 
@@ -21,50 +22,55 @@ class ForumsScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            title: Text('discussion forums'.tr().toTitleCase()),
-          ),
-          body: Column(
+          body: Row(
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: paddingMedium),
-                child: SearchTextFormField(
-                  hintText: 'search',
-                  readOnly: true,
-                  onTap: () {
-                    navigateTo(
-                      context: context,
-                      widget: const SearchForumsScreen(),
-                    );
-                  },
-                ),
-              ),
-              const SizedBox(height: paddingLarge),
               Expanded(
                 child: TapBarReUse(
                   initialIndex: forumsScreenCubit.indexOfForumsTap,
                   listOfTabsText: forumsScreenCubit.forumsText,
                   listOfViewsBody: forumsScreenCubit.forumsBody,
+                  tabBarIndicatorSize: TabBarIndicatorSize.tab,
                   onChange: (index) =>
                       forumsScreenCubit.changeIndexOfForumsTap(index),
                 ),
               ),
-            ],
-          ),
-          floatingActionButton: Padding(
-            padding: EdgeInsetsDirectional.only(bottom: screenH(context) * .08),
-            child: FloatingActionButton(
-              heroTag: "forumsScreen",
-              onPressed: () {
-                navigateTo(context: context, widget: const CreatePostScreen());
-              },
-              mini: true,
-              child: const Icon(
-                Icons.add,
-                color: Colors.white,
+              Padding(
+                padding: const EdgeInsetsDirectional.only(
+                  top: paddingLarge * 4,
+                ),
+                child: Container(
+                  color: Colors.transparent,
+                  width: screenW(context) * .3,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: paddingMedium,
+                    ),
+                    child: Column(
+                      children: [
+                        SearchTextFormField(
+                          hintText: 'search',
+                          readOnly: true,
+                          onTap: () {
+                            navigateTo(
+                              context: context,
+                              widget: const SearchForumsScreen(),
+                            );
+                          },
+                        ),
+                        const SizedBox(height: paddingLarge,),
+                        ReuseOutLinedButton(
+                          txt: "create post",
+                          onPressed: () {
+                            navigateTo(context: context, widget: const CreatePostScreen());
+
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
         );
       },

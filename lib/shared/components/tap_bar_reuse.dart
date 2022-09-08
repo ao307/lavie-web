@@ -10,6 +10,7 @@ class TapBarReUse extends StatelessWidget {
   final List<String>? listOfTabsText;
   final List<Widget>? listOfViewsBody;
   final Function(int)? onChange;
+  final TabBarIndicatorSize? tabBarIndicatorSize;
 
   const TapBarReUse({
     Key? key,
@@ -17,6 +18,7 @@ class TapBarReUse extends StatelessWidget {
     required this.listOfTabsText,
     required this.listOfViewsBody,
     required this.onChange,
+    this.tabBarIndicatorSize,
   }) : super(key: key);
 
   @override
@@ -24,8 +26,8 @@ class TapBarReUse extends StatelessWidget {
     return ContainedTabBarView(
       initialIndex: initialIndex!,
       tabBarProperties: TabBarProperties(
-        indicatorSize: TabBarIndicatorSize.tab,
-        height: 40,
+        indicatorSize: tabBarIndicatorSize ?? TabBarIndicatorSize.tab,
+        height: 60,
         isScrollable: true,
         padding: const EdgeInsets.symmetric(
           horizontal: paddingMedium,
@@ -35,38 +37,16 @@ class TapBarReUse extends StatelessWidget {
         ),
         labelStyle: const TextStyle(
           fontWeight: FontWeight.w700,
-        ),
-        indicator: BoxDecoration(
-          border: Border.all(
-            color: MyColors.cPrimary,
-            width: 3,
-          ),
-          borderRadius: const BorderRadius.all(
-            Radius.circular(borderRadiusMedium),
-          ),
+          fontSize: textSizeLarge,
         ),
         unselectedLabelColor: MyColors.cTextSubtitleLight,
       ),
       tabs: List.generate(
         listOfTabsText!.length,
-        (index) => Container(
-          height: 100,
-          alignment: AlignmentDirectional.center,
-          padding: initialIndex != index
-              ? const EdgeInsets.symmetric(
-                  horizontal: paddingLarge,
-                )
-              : EdgeInsets.zero,
-          decoration: initialIndex != index
-              ? BoxDecoration(
-                  color: MyColors.cTextSubtitleLight.withOpacity(0.2),
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(borderRadiusMedium),
-                  ),
-                )
-              : null,
-          child: Text(
-            listOfTabsText![index].tr().toTitleCase(),
+        (index) => Text(
+          listOfTabsText![index].tr().toTitleCase(),
+          style: TextStyle(
+            color: initialIndex == index ? MyColors.cPrimary : Colors.black,
           ),
         ),
       ),

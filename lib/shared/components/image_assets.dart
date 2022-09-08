@@ -7,5 +7,6 @@ class ImagesInAssets {
   static const String emptyFileImage = 'assets/image/empty-file.png';
   static const String pointsImage = 'assets/image/points.png';
   static const String dataImage = 'assets/image/data.png';
+  static const String backgroundHome = 'assets/image/background-home.png';
   ///
 }

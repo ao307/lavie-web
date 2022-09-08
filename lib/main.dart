@@ -6,6 +6,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:lavie_web/layout/home_layout/home_layout.dart';
 import 'package:lavie_web/layout/web_base_tab/web_base_tab.dart';
 import 'package:lavie_web/modules/auth_screens/auth_screen.dart';
+import 'package:lavie_web/modules/forums_screen/forums_screen.dart';
 import 'package:lavie_web/shared/api/remote/dio_helper.dart';
 import 'package:lavie_web/shared/bloc_observer.dart';
 import 'package:lavie_web/shared/components/constants.dart';
@@ -34,7 +35,7 @@ Future<void> startScreen() async {
   if (refreshTokenConst != null &&
       accessTokenConst != null &&
       userIdConst != null) {
-    startScreenDoctor = HomeLayout();
+    startScreenDoctor = const ForumsScreen();
   }
 }
 
@@ -86,6 +87,7 @@ class MyApp extends StatelessWidget {
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,
+            initialRoute: "/",
             debugShowCheckedModeBanner: false,
             theme: lightTheme(),
             darkTheme: darkTheme(),

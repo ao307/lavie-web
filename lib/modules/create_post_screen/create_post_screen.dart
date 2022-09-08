@@ -30,10 +30,6 @@ class CreatePostScreen extends StatelessWidget {
         return Stack(
           children: [
             Scaffold(
-              appBar: AppBar(
-                centerTitle: true,
-                title: Text('create new post'.tr().toCapitalized()),
-              ),
               body: Container(
                 width: screenW(context),
                 padding: const EdgeInsets.all(paddingLarge),

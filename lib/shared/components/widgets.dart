@@ -37,7 +37,7 @@ class ErrorPage extends StatelessWidget {
           children: [
             Image.asset(
               ImagesInAssets.emptyFileImage,
-              width: screenW(context) * .5,
+              width: 180,
             ),
             const SizedBox(height: paddingSmall),
             Text(
@@ -79,36 +79,34 @@ class EmptyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            ImagesInAssets.emptyFileImage,
-            width: screenW(context) * .5,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Image.asset(
+          ImagesInAssets.emptyFileImage,
+          width: 180,
+        ),
+        const SizedBox(height: paddingSmall),
+        Text(
+          '${title ?? 'empty'}!'.tr().toCapitalized(),
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            fontSize: textSizeLarge,
+            fontWeight: FontWeight.bold,
           ),
-          const SizedBox(height: paddingSmall),
-          Text(
-            '${title ?? 'empty'}!'.tr().toCapitalized(),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: paddingMedium),
+          child: Text(
+            (subTitle ?? "create one and go on.").tr().toCapitalized(),
             textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: textSizeLarge,
-              fontWeight: FontWeight.bold,
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              color: MyColors.cTextSubtitleLight.withOpacity(1),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal:paddingMedium),
-            child: Text(
-              (subTitle ?? "create one and go on.").tr().toCapitalized(),
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontWeight: FontWeight.w600,
-                color: MyColors.cTextSubtitleLight.withOpacity(1),
-              ),
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
@@ -237,4 +235,55 @@ class SideNotification extends StatelessWidget {
   }
 }
 
-// Tab
+class ReuseOutLinedButton extends StatelessWidget {
+  const ReuseOutLinedButton({
+    Key? key,
+    required this.onPressed,
+    this.txtColor = MyColors.cPrimary,
+    this.txt,
+    this.borderColor =  MyColors.cPrimary,
+  }) : super(key: key);
+  final VoidCallback? onPressed;
+  final Color? txtColor;
+  final Color? borderColor;
+  final String? txt;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      height: 45,
+      child: OutlinedButton(
+        onPressed: onPressed,
+        style: ButtonStyle(
+          elevation: MaterialStateProperty.all(0),
+          alignment: Alignment.center,
+          side: MaterialStateProperty.all(
+            BorderSide(width: 1, color: borderColor!),
+          ),
+          padding: MaterialStateProperty.all(
+            const EdgeInsets.only(
+              right: 75,
+              left: 75,
+              top: 12.5,
+              bottom: 12.5,
+            ),
+          ),
+          backgroundColor: MaterialStateProperty.all(Colors.transparent),
+          shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(borderRadiusMedium),
+            ),
+          ),
+        ),
+        child: Text(
+          '$txt'.tr().toTitleCase(),
+          style: TextStyle(
+            color: txtColor,
+            fontSize: textSizeMedium,
+          ),
+        ),
+      ),
+    );
+  }
+}
