@@ -29,7 +29,7 @@ class CartItem extends StatelessWidget {
     return Container(
       padding: const EdgeInsetsDirectional.all(paddingLarge),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(borderRadiusLarge),
+        borderRadius: BorderRadius.circular(borderRadiusSmall),
         color: Theme.of(context).scaffoldBackgroundColor,
         boxShadow: [
           BoxShadow(
@@ -39,12 +39,12 @@ class CartItem extends StatelessWidget {
           ),
         ],
       ),
-      child: Stack(
-        alignment: AlignmentDirectional.bottomEnd,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          // product image
           Row(
             children: [
-              // product image
               ClipRRect(
                 borderRadius: BorderRadius.circular(
                   borderRadiusMedium,
@@ -62,45 +62,37 @@ class CartItem extends StatelessWidget {
                 width: paddingMedium,
               ),
               // product name && price && counter
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Text(
-                    (model!.name ?? '').tr().toCapitalized(),
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    '${model!.price! * counter!} EGP'.tr(),
-                    style: const TextStyle(
-                      color: MyColors.cPrimary,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: paddingSmall,
-                  ),
-                  CartCounter(
-                    count: counter,
-                    addFunction: addFun,
-                    minusFunction: minFun,
-                  ),
-                ],
+              Text(
+                (model!.name ?? '').tr().toCapitalized(),
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ],
           ),
-          // delete
+          Text(
+            '${model!.price! * counter!} EGP'.tr(),
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          CartCounter(
+            count: counter,
+            addFunction: addFun,
+            minusFunction: minFun,
+          ),
           IconButton(
             onPressed: delete,
             icon: const Icon(
               IconlyBold.delete,
               color: MyColors.cPrimary,
             ),
-          )
+          ),
         ],
       ),
     );
   }
 }
+

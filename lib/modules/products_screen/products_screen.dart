@@ -28,12 +28,10 @@ class ProductsScreen extends StatelessWidget {
           builder: (context, state) {
             if (snapshot.connectionState == ConnectionState.waiting &&
                 productScreenCubit.productsModel == null) {
-              return const LoadingPage(
-              );
+              return const LoadingPage();
             } else if (snapshot.hasError ||
                 state is GetProductsDataErrorState) {
-              return const ErrorPage(
-              );
+              return const ErrorPage();
             }
             return BaseWidget(
               // floatingActionButton: FloatingActionButton(
@@ -58,8 +56,10 @@ class ProductsScreen extends StatelessWidget {
                           child: SearchTextFormField(
                             hintText: 'search',
                             readOnly: true,
-                            onTap: (){
-                              navigateTo(context: context, widget: const SearchProductsScreen());
+                            onTap: () {
+                              navigateTo(
+                                  context: context,
+                                  widget: const SearchProductsScreen());
                             },
                           ),
                         ),
@@ -70,7 +70,9 @@ class ProductsScreen extends StatelessWidget {
                           heroTag: "productScreen",
                           onPressed: () {
                             navigateTo(
-                                context: context, widget: const MyCartScreen(),);
+                              context: context,
+                              widget: const MyCartScreen(),
+                            );
                           },
                           mini: true,
                           child: const FaIcon(
