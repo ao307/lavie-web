@@ -48,18 +48,25 @@ class AppCubit extends Cubit<AppStates> {
     "about",
     "community",
   ];
-  int currentIndexOfTitle = 0;
+  int currentIndexOfTitle = 4;
 
   Future<void> changeIndexOfTitle(int index, BuildContext context) async {
     if (accessTokenConst != null) {
       currentIndexOfTitle = index;
-      if (index == 1) {
+      if (index == 0) {
+        // home
         navigateTo(context: context, widget: const ProductsScreen());
-      }else  if (index == 2){
+      } else if (index == 1) {
+        // shop
+        navigateTo(context: context, widget: const ProductsScreen());
+      } else if (index == 2) {
+        // blog
         navigateTo(context: context, widget: const BlogsScreen());
-      }else if(index==3){
+      } else if (index == 3) {
+        // about
         navigateTo(context: context, widget: const BlogsScreen());
-      }else if(index==4){
+      } else if (index == 4) {
+        // community
         navigateTo(context: context, widget: const ForumsScreen());
       }
       emit(AppChangeTitleBar());
