@@ -27,7 +27,7 @@ class TapBarReUse extends StatelessWidget {
       initialIndex: initialIndex!,
       tabBarProperties: TabBarProperties(
         indicatorSize: tabBarIndicatorSize ?? TabBarIndicatorSize.tab,
-        height: 60,
+        height: 100,
         isScrollable: true,
         padding: const EdgeInsets.symmetric(
           horizontal: paddingMedium,
@@ -38,6 +38,7 @@ class TapBarReUse extends StatelessWidget {
         labelStyle: const TextStyle(
           fontWeight: FontWeight.w700,
           fontSize: textSizeLarge,
+          height: 4,
         ),
         unselectedLabelColor: MyColors.cTextSubtitleLight,
       ),

@@ -12,6 +12,7 @@ class GetProfileDataSuccessState extends ProfileStates {}
 
 class GetProfileDataErrorState extends ProfileStates {
   final String onError;
+
   GetProfileDataErrorState(this.onError);
 }
 
@@ -22,5 +23,6 @@ class UpdateProfileDataSuccessState extends ProfileStates {}
 
 class UpdateProfileDataErrorState extends ProfileStates {
   final String onError;
+
   UpdateProfileDataErrorState(this.onError);
 }

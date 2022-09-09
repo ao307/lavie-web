@@ -1,16 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_iconly/flutter_iconly.dart';
-import 'package:lavie_web/modules/auth_screens/auth_screen.dart';
-import 'package:lavie_web/modules/profile_screen/profile_widgets/images_and_profile_name.dart';
-import 'package:lavie_web/modules/profile_screen/profile_widgets/point_container.dart';
-import 'package:lavie_web/modules/profile_screen/profile_widgets/profile_list_tile.dart';
 import 'package:lavie_web/shared/components/constants.dart';
-import 'package:lavie_web/shared/components/image_assets.dart';
 import 'package:lavie_web/shared/components/reuse_functions.dart';
-import 'package:lavie_web/shared/cubit/auth_cubit/auth_cubit.dart';
 
+import '../../layout/web_base_tab/web_base_tab.dart';
 import '../../models/products_model.dart';
 import '../../shared/themes/colors.dart';
 
@@ -20,8 +14,8 @@ class ScanProductScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
+    return BaseWidget(
+      child: Stack(
         children: [
           SizedBox(
             height: screenH(context) * .5,

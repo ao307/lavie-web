@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lavie_web/modules/forums_screen/search_screen/search_forums_screen.dart';
@@ -7,6 +6,7 @@ import 'package:lavie_web/shared/components/constants.dart';
 import 'package:lavie_web/shared/components/reuse_functions.dart';
 import 'package:lavie_web/shared/cubit/forums_cubit/forums_cubit.dart';
 
+import '../../layout/web_base_tab/web_base_tab.dart';
 import '../../shared/components/tap_bar_reuse.dart';
 import '../../shared/components/widgets.dart';
 import '../../shared/cubit/forums_cubit/forums_states.dart';
@@ -21,8 +21,8 @@ class ForumsScreen extends StatelessWidget {
     return BlocConsumer<ForumsCubit, ForumsStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        return Scaffold(
-          body: Row(
+        return BaseWidget(
+          child: Row(
             children: [
               Expanded(
                 child: TapBarReUse(

@@ -2,9 +2,12 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lavie_web/modules/blog_screen/blog_screen.dart';
+import 'package:lavie_web/modules/products_screen/products_screen.dart';
 import 'package:lavie_web/modules/profile_screen/profile_screen.dart';
 import 'package:lavie_web/shared/api/local/app_box.dart';
 import 'package:lavie_web/shared/components/constants.dart';
+import 'package:lavie_web/shared/components/reuse_functions.dart';
 import 'package:lavie_web/shared/cubit/states.dart';
 
 import '../../modules/forums_screen/forums_screen.dart';
@@ -37,8 +40,6 @@ class AppCubit extends Cubit<AppStates> {
     emit(AppChangeBottomNavBarState());
   }
 
-
-
   // web
   List<String> appBarTitles = [
     "home",
@@ -49,10 +50,21 @@ class AppCubit extends Cubit<AppStates> {
   ];
   int currentIndexOfTitle = 0;
 
-  Future<void> changeIndexOfTitle(int index) async {
-    currentIndexOfTitle = index;
-
-    emit(AppChangeTitleBar());
+  Future<void> changeIndexOfTitle(int index, BuildContext context) async {
+    if (accessTokenConst != null) {
+      currentIndexOfTitle = index;
+      if (index == 1) {
+        navigateTo(context: context, widget: const ProductsScreen());
+      }else  if (index == 2){
+        navigateTo(context: context, widget: const BlogsScreen());
+      }else if(index==3){
+        navigateTo(context: context, widget: const BlogsScreen());
+      }else if(index==4){
+        navigateTo(context: context, widget: const ForumsScreen());
+      }
+      emit(AppChangeTitleBar());
+    } else {
+      showToast(msg: 'you should login first');
+    }
   }
-
 }

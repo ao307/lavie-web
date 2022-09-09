@@ -34,8 +34,6 @@ class AllForumsBody extends StatelessWidget {
               padding: const EdgeInsetsDirectional.only(
                 start: paddingMedium,
                 end: paddingMedium,
-                top: paddingMedium * 2,
-                bottom: paddingLarge * 5,
               ),
               separatorBuilder: (BuildContext context, int index) =>
                   const SizedBox(

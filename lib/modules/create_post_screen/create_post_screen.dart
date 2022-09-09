@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lavie_web/modules/create_post_screen/create_posts_widgets/add_post_button.dart';
@@ -8,6 +7,7 @@ import 'package:lavie_web/shared/components/constants.dart';
 import 'package:lavie_web/shared/components/reuse_functions.dart';
 import 'package:lavie_web/shared/components/widgets.dart';
 import 'package:lavie_web/shared/cubit/forums_cubit/forums_states.dart';
+import '../../layout/web_base_tab/web_base_tab.dart';
 import '../../shared/cubit/forums_cubit/forums_cubit.dart';
 import '../auth_screens/auth_widgets/auth_button.dart';
 import '../auth_screens/auth_widgets/auth_text_form_field.dart';
@@ -29,8 +29,8 @@ class CreatePostScreen extends StatelessWidget {
       builder: (context, state) {
         return Stack(
           children: [
-            Scaffold(
-              body: Container(
+            BaseWidget(
+              child: Container(
                 width: screenW(context),
                 padding: const EdgeInsets.all(paddingLarge),
                 child: SingleChildScrollView(
@@ -45,8 +45,8 @@ class CreatePostScreen extends StatelessWidget {
                             },
                           )
                         else
-                          AspectRatio(
-                            aspectRatio: 16 / 9,
+                          SizedBox(
+                            height: screenH(context)*.3,
                             child: InkWell(
                               onTap: () {
                                 forumsCubit.pickImageForums();

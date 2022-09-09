@@ -259,7 +259,7 @@ class ReuseOutLinedButton extends StatelessWidget {
           elevation: MaterialStateProperty.all(0),
           alignment: Alignment.center,
           side: MaterialStateProperty.all(
-            BorderSide(width: 1, color: borderColor!),
+            BorderSide(color: borderColor!),
           ),
           padding: MaterialStateProperty.all(
             const EdgeInsets.only(

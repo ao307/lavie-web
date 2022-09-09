@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:lavie_web/layout/home_layout/home_layout.dart';
-import 'package:lavie_web/layout/web_base_tab/web_base_tab.dart';
 import 'package:lavie_web/modules/auth_screens/auth_screen.dart';
 import 'package:lavie_web/modules/forums_screen/forums_screen.dart';
 import 'package:lavie_web/shared/api/remote/dio_helper.dart';
@@ -81,9 +79,6 @@ class MyApp extends StatelessWidget {
         builder: (context, state) {
           return MaterialApp(
             useInheritedMediaQuery: true,
-            builder: (context, child) => BaseWidget(
-              child: child,
-            ),
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,

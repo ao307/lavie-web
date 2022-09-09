@@ -10,7 +10,7 @@ import 'package:lavie_web/shared/components/constants.dart';
 import 'package:lavie_web/shared/components/reuse_functions.dart';
 import 'package:lavie_web/shared/themes/colors.dart';
 
-import '../../layout/home_layout/home_layout.dart';
+import '../../layout/web_base_tab/web_base_tab.dart';
 import '../../shared/components/widgets.dart';
 import '../../shared/cubit/auth_cubit/auth_cubit.dart';
 import '../../shared/cubit/auth_cubit/auth_states.dart';
@@ -28,8 +28,8 @@ class AuthScreen extends StatelessWidget {
         }
       },
       builder: (BuildContext context, Object? state) {
-        return Scaffold(
-          body: Stack(
+        return BaseWidget(
+          child: Stack(
             children: [
               BackLeaves(
                 child: Padding(

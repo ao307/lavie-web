@@ -5,14 +5,13 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lavie_web/modules/products_screen/products_widgets/search_text_form.dart';
 import 'package:lavie_web/modules/products_screen/search_product_screen/search_product_screen.dart';
 import 'package:lavie_web/shared/components/constants.dart';
-import 'package:lavie_web/shared/components/image_assets.dart';
 import 'package:lavie_web/shared/components/reuse_functions.dart';
 import 'package:lavie_web/shared/components/widgets.dart';
 
+import '../../layout/web_base_tab/web_base_tab.dart';
 import '../../shared/components/tap_bar_reuse.dart';
 import '../../shared/cubit/products_cubit/products_cubit.dart';
 import '../../shared/cubit/products_cubit/products_states.dart';
-import '../blog_screen/blog_screen.dart';
 import '../cart_screen/cart_screen.dart';
 
 class ProductsScreen extends StatelessWidget {
@@ -29,36 +28,26 @@ class ProductsScreen extends StatelessWidget {
           builder: (context, state) {
             if (snapshot.connectionState == ConnectionState.waiting &&
                 productScreenCubit.productsModel == null) {
-              return LoadingPage(
-                appBar: AppBar(
-                  centerTitle: true,
-                  title: Image.asset(
-                    ImagesInAssets.logoImage,
-                    width: 100,
-                  ),
-                ),
+              return const LoadingPage(
               );
             } else if (snapshot.hasError ||
                 state is GetProductsDataErrorState) {
-              return ErrorPage(
-                appBar: AppBar(
-                  centerTitle: true,
-                  title: Image.asset(
-                    ImagesInAssets.logoImage,
-                    width: 100,
-                  ),
-                ),
+              return const ErrorPage(
               );
             }
-            return Scaffold(
-              appBar: AppBar(
-                centerTitle: true,
-                title: Image.asset(
-                  ImagesInAssets.logoImage,
-                  width: 100,
-                ),
-              ),
-              body: Column(
+            return BaseWidget(
+              // floatingActionButton: FloatingActionButton(
+              //   tooltip: 'blogsGo',
+              //   child: const Icon(
+              //     Icons.question_mark_outlined,
+              //     color: Colors.white,
+              //     size: 30,
+              //   ),
+              //   onPressed: () {
+              //     navigateTo(context: context, widget: const BlogsScreen());
+              //   },
+              // ),
+              child: Column(
                 children: [
                   Padding(
                     padding:
@@ -103,17 +92,6 @@ class ProductsScreen extends StatelessWidget {
                     ),
                   ),
                 ],
-              ),
-              floatingActionButton: FloatingActionButton(
-                tooltip: 'blogsGo',
-                child: const Icon(
-                  Icons.question_mark_outlined,
-                  color: Colors.white,
-                  size: 30,
-                ),
-                onPressed: () {
-                  navigateTo(context: context, widget: const BlogsScreen());
-                },
               ),
             );
           },

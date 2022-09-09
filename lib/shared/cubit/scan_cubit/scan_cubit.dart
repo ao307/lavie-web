@@ -4,7 +4,6 @@ import 'package:lavie_web/shared/cubit/scan_cubit/scan_states.dart';
 
 import '../../../models/products_model.dart';
 import '../../../models/scan_model.dart';
-import '../../api/end_points.dart';
 import '../../api/remote/dio_helper.dart';
 import '../../components/constants.dart';
 import '../../components/reuse_functions.dart';

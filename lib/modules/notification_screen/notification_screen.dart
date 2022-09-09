@@ -1,11 +1,10 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lavie_web/modules/notification_screen/notification_item/notification_item.dart';
 import 'package:lavie_web/shared/components/constants.dart';
-import 'package:lavie_web/shared/components/reuse_functions.dart';
 import 'package:lavie_web/shared/cubit/cubit.dart';
 import 'package:lavie_web/shared/cubit/states.dart';
+import '../../layout/web_base_tab/web_base_tab.dart';
 import '../../shared/components/widgets.dart';
 import '../../shared/cubit/profile_cubit/profile_cubit.dart';
 
@@ -24,26 +23,14 @@ class NotificationScreen extends StatelessWidget {
             final profileModel = profileCubit.profileDataModel;
             if (snapshot.connectionState == ConnectionState.waiting &&
                 profileModel == null) {
-              return LoadingPage(
-                appBar: AppBar(
-                  centerTitle: true,
-                  title: Text('notification'.tr().toCapitalized()),
-                ),
+              return const LoadingPage(
               );
             } else if (snapshot.hasError || profileModel == null) {
-              return ErrorPage(
-                appBar: AppBar(
-                  centerTitle: true,
-                  title: Text('notification'.tr().toCapitalized()),
-                ),
+              return const ErrorPage(
               );
             }
-            return Scaffold(
-              appBar: AppBar(
-                centerTitle: true,
-                title: Text('notification'.tr().toCapitalized()),
-              ),
-              body: profileModel.data!.userNotification!.isNotEmpty
+            return BaseWidget(
+              child: profileModel.data!.userNotification!.isNotEmpty
                   ? ListView.separated(
                       padding: const EdgeInsetsDirectional.only(
                         bottom: paddingLarge * 5,

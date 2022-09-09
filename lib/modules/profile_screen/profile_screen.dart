@@ -11,6 +11,7 @@ import 'package:lavie_web/shared/components/image_assets.dart';
 import 'package:lavie_web/shared/components/reuse_functions.dart';
 import 'package:lavie_web/shared/cubit/auth_cubit/auth_cubit.dart';
 
+import '../../layout/web_base_tab/web_base_tab.dart';
 import '../../shared/components/widgets.dart';
 import '../../shared/cubit/profile_cubit/profile_cubit.dart';
 import '../../shared/cubit/profile_cubit/profile_states.dart';
@@ -35,8 +36,8 @@ class ProfileScreen extends StatelessWidget {
             } else if (snapshot.hasError || profileModel == null) {
               return const ErrorPage();
             }
-            return Scaffold(
-              body: Stack(
+            return BaseWidget(
+              child: Stack(
                 children: [
                   SizedBox(
                     height: screenH(context) * .42,

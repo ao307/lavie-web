@@ -8,6 +8,7 @@ import 'package:lavie_web/shared/components/constants.dart';
 import 'package:lavie_web/shared/components/reuse_functions.dart';
 import 'package:lavie_web/shared/components/widgets.dart';
 import 'package:lavie_web/shared/cubit/products_cubit/products_cubit.dart';
+import '../../layout/web_base_tab/web_base_tab.dart';
 import '../../shared/cubit/products_cubit/products_states.dart';
 
 class BlogsScreen extends StatelessWidget {
@@ -24,91 +25,97 @@ class BlogsScreen extends StatelessWidget {
           builder: (context, state) {
             if (snapshot.connectionState == ConnectionState.waiting &&
                 productsCubit.blogsModel == null) {
-              return LoadingPage(
-                appBar: AppBar(
-                  centerTitle: true,
-                  title: Text('blogs'.tr().toCapitalized()),
-                ),
-              );
+              return const LoadingPage();
             } else if (productsCubit.blogsModel == null || snapshot.hasError) {
-              return ErrorPage(
-                appBar: AppBar(
-                  centerTitle: true,
-                  title: Text('blogs'.tr().toCapitalized()),
-                ),
-              );
+              return const ErrorPage();
             }
             final toLengthIf = productsCubit.blogsModel!.data;
-            return Scaffold(
-              appBar: AppBar(
-                centerTitle: true,
-                title: Text('blogs'.tr().toCapitalized()),
-              ),
-              body: toLengthIf!.seeds!.isNotEmpty &&
+            return BaseWidget(
+              child: toLengthIf!.seeds!.isNotEmpty &&
                       toLengthIf.plants!.isNotEmpty &&
                       toLengthIf.tools!.isNotEmpty
-                  ? SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          ListView.separated(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount:
-                                productsCubit.blogsModel!.data!.plants!.length,
-                            padding: const EdgeInsetsDirectional.all(
-                              paddingLarge,
-                            ),
-                            separatorBuilder:
-                                (BuildContext context, int index) =>
-                                    const SizedBox(
-                              height: paddingLarge,
-                            ),
-                            itemBuilder: (BuildContext context, int index) =>
-                                BlogsPlantItem(
-                              model: productsCubit
-                                  .blogsModel!.data!.plants![index],
+                  ? Column(
+                      children: [
+                        Text(
+                          'blogs'.tr().toTitleCase(),
+                          style: const TextStyle(
+                            fontSize: textSizeLarge,
+                          ),
+                        ),
+                        Expanded(
+                          child: SingleChildScrollView(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: paddingLarge * 3,
+                              ),
+                              child: Column(
+                                children: [
+                                  GridView.builder(
+                                    shrinkWrap: true,
+                                    padding: const EdgeInsets.only(
+                                      top: paddingLarge * 2,
+                                    ),
+                                    physics: const NeverScrollableScrollPhysics(),
+                                    itemCount: productsCubit
+                                        .blogsModel!.data!.plants!.length,
+                                    gridDelegate:
+                                        const SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 3,
+                                      crossAxisSpacing: paddingLarge * 2,
+                                      mainAxisSpacing: paddingLarge * 2,
+                                      childAspectRatio: 1.16,
+                                    ),
+                                    itemBuilder:
+                                        (BuildContext context, int index) =>
+                                            BlogsPlantItem(
+                                      model: productsCubit
+                                          .blogsModel!.data!.plants![index],
+                                    ),
+                                  ),
+                                  GridView.builder(
+                                    shrinkWrap: true,
+                                    physics: const NeverScrollableScrollPhysics(),
+                                    itemCount: productsCubit
+                                        .blogsModel!.data!.seeds!.length,
+                                    gridDelegate:
+                                        const SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 3,
+                                      crossAxisSpacing: paddingLarge * 2,
+                                      mainAxisSpacing: paddingLarge * 2,
+                                      childAspectRatio: 1.16,
+                                    ),
+                                    itemBuilder:
+                                        (BuildContext context, int index) =>
+                                            BlogsSeedItem(
+                                      model: productsCubit
+                                          .blogsModel!.data!.seeds![index],
+                                    ),
+                                  ),
+                                  GridView.builder(
+                                    shrinkWrap: true,
+                                    physics: const NeverScrollableScrollPhysics(),
+                                    itemCount: productsCubit
+                                        .blogsModel!.data!.tools!.length,
+                                    gridDelegate:
+                                        const SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 3,
+                                      crossAxisSpacing: paddingLarge * 2,
+                                      mainAxisSpacing: paddingLarge * 2,
+                                      childAspectRatio: 1.16,
+                                    ),
+                                    itemBuilder:
+                                        (BuildContext context, int index) =>
+                                            BlogsToolsItem(
+                                      model: productsCubit
+                                          .blogsModel!.data!.tools![index],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                          ListView.separated(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount:
-                                productsCubit.blogsModel!.data!.seeds!.length,
-                            padding: const EdgeInsetsDirectional.all(
-                              paddingLarge,
-                            ),
-                            separatorBuilder:
-                                (BuildContext context, int index) =>
-                                    const SizedBox(
-                              height: paddingLarge,
-                            ),
-                            itemBuilder: (BuildContext context, int index) =>
-                                BlogsSeedItem(
-                              model:
-                                  productsCubit.blogsModel!.data!.seeds![index],
-                            ),
-                          ),
-                          ListView.separated(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount:
-                                productsCubit.blogsModel!.data!.tools!.length,
-                            padding: const EdgeInsetsDirectional.all(
-                              paddingLarge,
-                            ),
-                            separatorBuilder:
-                                (BuildContext context, int index) =>
-                                    const SizedBox(
-                              height: paddingLarge,
-                            ),
-                            itemBuilder: (BuildContext context, int index) =>
-                                BlogsToolsItem(
-                              model:
-                                  productsCubit.blogsModel!.data!.tools![index],
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     )
                   : const EmptyWidget(),
             );

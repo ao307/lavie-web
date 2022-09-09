@@ -1,12 +1,10 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lavie_web/modules/auth_screens/auth_widgets/auth_button.dart';
 import 'package:lavie_web/modules/cart_screen/cart_screen_widgets/cart_item.dart';
 import 'package:lavie_web/shared/components/constants.dart';
-import 'package:lavie_web/shared/components/reuse_functions.dart';
 import 'package:lavie_web/shared/cubit/products_cubit/products_cubit.dart';
-import 'package:lavie_web/shared/themes/colors.dart';
+import '../../layout/web_base_tab/web_base_tab.dart';
 import '../../shared/components/widgets.dart';
 import '../../shared/cubit/products_cubit/products_states.dart';
 
@@ -19,12 +17,8 @@ class MyCartScreen extends StatelessWidget {
     return BlocConsumer<ProductsCubit, ProductsStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        return Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            title: Text('my cart'.tr().toCapitalized()),
-          ),
-          body: productsCubit.listOfDataCart.isNotEmpty
+        return BaseWidget(
+          child: productsCubit.listOfDataCart.isNotEmpty
               ? Column(
                   children: [
                     Expanded(

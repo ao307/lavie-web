@@ -5,7 +5,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lavie_web/modules/auth_screens/auth_widgets/auth_button.dart';
 import 'package:lavie_web/modules/auth_screens/auth_widgets/auth_text_form_field.dart';
 import 'package:lavie_web/modules/auth_screens/auth_widgets/ritch_text_button_.dart';
-import 'package:lavie_web/shared/api/google_auth.dart';
 import 'package:lavie_web/shared/components/constants.dart';
 import 'package:lavie_web/shared/components/image_assets.dart';
 import 'package:lavie_web/shared/components/reuse_functions.dart';

@@ -102,6 +102,13 @@ class ForumsItem extends StatelessWidget {
               imageUrl: forums!.imageUrl != null
                   ? baseApiUrl + forums!.imageUrl!
                   : errorProfileImage,
+              errorWidget: (context, imageUrl, error) {
+                return Center(
+                  child: Text(
+                    'not found in server'.tr().toTitleCase(),
+                  ),
+                );
+              },
               fit: BoxFit.cover,
             ),
           ),

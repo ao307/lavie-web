@@ -16,9 +16,7 @@ class BlogsToolsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsetsDirectional.all(paddingLarge),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(borderRadiusLarge),
         color: Theme.of(context).scaffoldBackgroundColor,
         boxShadow: [
           BoxShadow(
@@ -28,43 +26,39 @@ class BlogsToolsItem extends StatelessWidget {
           ),
         ],
       ),
-      child: Row(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // product image
-          ClipRRect(
-            borderRadius: BorderRadius.circular(
-              borderRadiusMedium,
-            ),
+          AspectRatio(
+            aspectRatio: 2,
             child: CachedNetworkImage(
               imageUrl: model!.imageUrl!.isNotEmpty
                   ? baseApiUrl + model!.imageUrl!
                   : errorProfileImage,
-              width: 100,
-              height: 100,
               fit: BoxFit.cover,
+              width: double.infinity,
             ),
           ),
-          const SizedBox(
-            width: paddingMedium,
-          ),
           // product name && price && counter
-          Expanded(
+          Padding(
+            padding: const EdgeInsetsDirectional.all(paddingLarge),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(
                   (model!.name ?? '').toCapitalized(),
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
                 Text(
                   model!.description ?? "",
                   style: const TextStyle(
-                    color: MyColors.cPrimary,
+                    color: MyColors.cTextSubtitleLight,
                     fontWeight: FontWeight.bold,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
               ],
