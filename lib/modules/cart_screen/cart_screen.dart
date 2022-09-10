@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lavie_web/modules/auth_screens/auth_widgets/auth_button.dart';
 import 'package:lavie_web/modules/cart_screen/cart_screen_widgets/cart_item.dart';
 import 'package:lavie_web/shared/components/constants.dart';
+import 'package:lavie_web/shared/components/image_assets.dart';
 import 'package:lavie_web/shared/components/reuse_functions.dart';
 import 'package:lavie_web/shared/cubit/products_cubit/products_cubit.dart';
 import '../../layout/web_base_tab/web_base_tab.dart';
@@ -25,11 +26,12 @@ class MyCartScreen extends StatelessWidget {
               ? Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: paddingLarge*2),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: paddingLarge * 2),
                       child: Text(
                         'my cart'.tr().toTitleCase(),
                         style: const TextStyle(
-                          fontSize: textSizeLarge*2,
+                          fontSize: textSizeLarge * 2,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -54,8 +56,9 @@ class MyCartScreen extends StatelessWidget {
                                         const SizedBox(
                                   height: paddingLarge,
                                 ),
-                                itemBuilder: (BuildContext context, int index) =>
-                                    CartItem(
+                                itemBuilder:
+                                    (BuildContext context, int index) =>
+                                        CartItem(
                                   counter: productsCubit.cartCount[index],
                                   model: productsCubit.listOfDataCart[index],
                                   addFun: () =>
@@ -73,8 +76,8 @@ class MyCartScreen extends StatelessWidget {
                             Expanded(
                               child: Container(
                                 height: screenH(context) * .4,
-                                padding:
-                                    const EdgeInsetsDirectional.all(paddingLarge),
+                                padding: const EdgeInsetsDirectional.all(
+                                    paddingLarge),
                                 decoration: BoxDecoration(
                                   borderRadius:
                                       BorderRadius.circular(borderRadiusSmall),
@@ -122,10 +125,23 @@ class MyCartScreen extends StatelessWidget {
                     ),
                   ],
                 )
-              : const EmptyWidget(
+              :  EmptyWidget(
                   title: "your cart is empty",
                   subTitle:
                       "sorry, the keyword you entered cannot be found, please check again or search with another keyword.",
+            image: ImagesInAssets.basketImage,
+                  child: Column(
+                    children:const [
+                      SizedBox(height: paddingLarge,),
+                      SizedBox(
+                        height: 40,
+                        width: 200,
+                        child: AuthButton(
+                          text: 'keep shopping',
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
         );
       },

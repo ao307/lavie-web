@@ -73,9 +73,11 @@ class ErrorPage extends StatelessWidget {
 }
 
 class EmptyWidget extends StatelessWidget {
-  const EmptyWidget({Key? key, this.title, this.subTitle}) : super(key: key);
+  const EmptyWidget({Key? key, this.title, this.subTitle,this.image,this.child}) : super(key: key);
   final String? title;
   final String? subTitle;
+  final String? image;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +85,7 @@ class EmptyWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image.asset(
-          ImagesInAssets.emptyFileImage,
+          image ?? ImagesInAssets.emptyFileImage,
           width: 180,
         ),
         const SizedBox(height: paddingSmall),
@@ -95,6 +97,7 @@ class EmptyWidget extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
+        if(child==null)
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: paddingMedium),
           child: Text(
@@ -105,7 +108,9 @@ class EmptyWidget extends StatelessWidget {
               color: MyColors.cTextSubtitleLight.withOpacity(1),
             ),
           ),
-        ),
+        )
+        else
+          child!,
       ],
     );
   }

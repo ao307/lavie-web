@@ -51,6 +51,7 @@ class AuthButton extends StatelessWidget {
               color: textColor ?? MyColors.cPrimary,
               fontWeight: FontWeight.w700,
               fontSize: 16,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         ),
