@@ -10,6 +10,7 @@ import 'package:lavie_web/shared/components/widgets.dart';
 import 'package:lavie_web/shared/cubit/products_cubit/products_cubit.dart';
 import '../../layout/web_base_tab/web_base_tab.dart';
 import '../../shared/cubit/products_cubit/products_states.dart';
+import '../product_scan_screen/scan_product_screen.dart';
 
 class BlogsScreen extends StatelessWidget {
   const BlogsScreen({Key? key}) : super(key: key);
@@ -55,7 +56,8 @@ class BlogsScreen extends StatelessWidget {
                                     padding: const EdgeInsets.only(
                                       top: paddingLarge * 2,
                                     ),
-                                    physics: const NeverScrollableScrollPhysics(),
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
                                     itemCount: productsCubit
                                         .blogsModel!.data!.plants!.length,
                                     gridDelegate:
@@ -70,11 +72,37 @@ class BlogsScreen extends StatelessWidget {
                                             BlogsPlantItem(
                                       model: productsCubit
                                           .blogsModel!.data!.plants![index],
+                                      onTap: () {
+                                        navigateTo(
+                                          context: context,
+                                          widget: ScanProductScreen(
+                                            imageUrl: productsCubit
+                                                    .blogsModel!
+                                                    .data!
+                                                    .plants![index]
+                                                    .imageUrl ??
+                                                '',
+                                            name: productsCubit
+                                                    .blogsModel!
+                                                    .data!
+                                                    .plants![index]
+                                                    .name ??
+                                                '',
+                                            description: productsCubit
+                                                    .blogsModel!
+                                                    .data!
+                                                    .plants![index]
+                                                    .description ??
+                                                '',
+                                          ),
+                                        );
+                                      },
                                     ),
                                   ),
                                   GridView.builder(
                                     shrinkWrap: true,
-                                    physics: const NeverScrollableScrollPhysics(),
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
                                     itemCount: productsCubit
                                         .blogsModel!.data!.seeds!.length,
                                     gridDelegate:
@@ -93,7 +121,8 @@ class BlogsScreen extends StatelessWidget {
                                   ),
                                   GridView.builder(
                                     shrinkWrap: true,
-                                    physics: const NeverScrollableScrollPhysics(),
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
                                     itemCount: productsCubit
                                         .blogsModel!.data!.tools!.length,
                                     gridDelegate:

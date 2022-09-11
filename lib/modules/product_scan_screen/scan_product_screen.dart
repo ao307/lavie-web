@@ -5,108 +5,81 @@ import 'package:lavie_web/shared/components/constants.dart';
 import 'package:lavie_web/shared/components/reuse_functions.dart';
 
 import '../../layout/web_base_tab/web_base_tab.dart';
-import '../../models/products_model.dart';
 import '../../shared/themes/colors.dart';
 
+// TODO: blog product
 class ScanProductScreen extends StatelessWidget {
-  const ScanProductScreen({Key? key, this.productData}) : super(key: key);
-  final ProductData? productData;
+  const ScanProductScreen({
+    Key? key,
+    this.imageUrl = "",
+    this.name = "",
+    this.description = "",
+  }) : super(key: key);
+  final String? imageUrl;
+  final String? name;
+  final String? description;
 
   @override
   Widget build(BuildContext context) {
     return BaseWidget(
-      child: Stack(
-        children: [
-          SizedBox(
-            height: screenH(context) * .5,
-            child: Stack(
-              alignment: AlignmentDirectional.center,
-              children: [
-                CachedNetworkImage(
-                  imageUrl: productData!.imageUrl!.isNotEmpty
-                      ? "$baseApiUrl${productData!.imageUrl}"
-                      : errorProfileImage,
-                ),
-                Container(
-                  color: Colors.black45.withOpacity(.2),
-                ),
-                if(productData!.plant!=null)
-                  Align(
-                    alignment: AlignmentDirectional.topStart,
-                    child: Padding(
-                      padding:
-                      const EdgeInsetsDirectional.only(start: paddingLarge),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          ItemProductScan(
-                            icon: Icons.light_mode_outlined,
-                            numberText: "${productData!.plant!.sunLight}",
-                            titleText: "sun light",
-                          ),
-                          const SizedBox(height: paddingLarge),
-                          ItemProductScan(
-                            icon: Icons.water_drop_outlined,
-                            numberText: "${productData!.plant!.waterCapacity}",
-                            titleText: "sun light",
-                          ),
-                          const SizedBox(height: paddingLarge),
-                          ItemProductScan(
-                            icon: Icons.thermostat_outlined,
-                            numberText: "${productData!.plant!.temperature}",
-                            titleText: "sun light",
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-              ],
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              height: screenH(context) * .54,
-              width: screenW(context),
-              decoration: BoxDecoration(
-                color: Theme.of(context).scaffoldBackgroundColor,
-                borderRadius: const BorderRadiusDirectional.only(
-                  topStart: Radius.circular(borderRadiusLarge),
-                  topEnd: Radius.circular(borderRadiusLarge),
-                ),
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: const EdgeInsetsDirectional.only(
+                bottom: paddingLarge * 4,
+                top: paddingLarge * 1.5,
+                start: paddingLarge,
+                end: paddingLarge,
               ),
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.only(
-                    bottom: paddingLarge * 4,
-                    top: paddingLarge * 1.5,
-                    start: paddingMedium,
-                    end: paddingMedium,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CachedNetworkImage(
+                    imageUrl: imageUrl!.isNotEmpty
+                        ? "$baseApiUrl$imageUrl"
+                        : errorProfileImage,
+                    height: screenH(context) * .5,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
                   ),
-                  child: Column(
+                  const SizedBox(
+                    height: paddingLarge,
+                  ),
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "${productData!.name}",
+                        "$name",
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: textSizeLarge,
                         ),
                       ),
+                      const SizedBox(
+                        height: paddingMedium,
+                      ),
                       Text(
-                        "${productData!.description}",
+                        "$description",
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
+                          fontSize: textSizeMedium,
                           color: MyColors.cTextSubtitleLight,
                         ),
                       ),
                     ],
                   ),
-                ),
+                ],
               ),
             ),
-          ),
-        ],
+            Container(
+              color: MyColors.cTextSubtitleLight.withOpacity(.1),
+              height: 200,
+            ),
+
+          ],
+        ),
       ),
     );
   }

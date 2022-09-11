@@ -22,9 +22,7 @@ class ScanScreen extends StatelessWidget {
         if (state is GetScanProductSuccessState) {
           navigateTo(
             context: context,
-            widget: ScanProductScreen(
-              productData: scanCubit.productData,
-            ),
+            widget: const ScanProductScreen(),
           );
         }
       },
