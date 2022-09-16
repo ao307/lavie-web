@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lavie_web/modules/auth_screens/auth_widgets/auth_text_form_field.dart';
 import 'package:lavie_web/modules/forums_screen/search_screen/search_forums_screen.dart';
 import 'package:lavie_web/modules/products_screen/products_widgets/search_text_form.dart';
 import 'package:lavie_web/shared/components/constants.dart';
@@ -10,6 +12,7 @@ import '../../layout/web_base_tab/web_base_tab.dart';
 import '../../shared/components/tap_bar_reuse.dart';
 import '../../shared/components/widgets.dart';
 import '../../shared/cubit/forums_cubit/forums_states.dart';
+import '../../shared/themes/colors.dart';
 import '../create_post_screen/create_post_screen.dart';
 
 class ForumsScreen extends StatelessWidget {
@@ -57,12 +60,18 @@ class ForumsScreen extends StatelessWidget {
                             );
                           },
                         ),
-                        const SizedBox(height: paddingLarge,),
+                        const SizedBox(
+                          height: paddingLarge,
+                        ),
                         ReuseOutLinedButton(
                           txt: "create post",
                           onPressed: () {
-                            navigateTo(context: context, widget: const CreatePostScreen());
-
+                            showMyDialog(
+                              context: context,
+                              title: "create new post".tr().toCapitalized(),
+                              width: screenW(context) * .9,
+                              body: const CreatePostScreen(),
+                            );
                           },
                         ),
                       ],

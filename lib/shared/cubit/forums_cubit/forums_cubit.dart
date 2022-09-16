@@ -57,6 +57,7 @@ class ForumsCubit extends Cubit<ForumsStates> {
       fileBytes = await image.readAsBytes();
       imagesBase64.add(base64Encode(fileBytes!));
     }
+    updateTextEditingController.text = image!.name;
     printFullText(imagesBase64[0]);
     emit(AnyState());
   }
@@ -127,6 +128,7 @@ class ForumsCubit extends Cubit<ForumsStates> {
   TextEditingController titleTextEditingController = TextEditingController();
   TextEditingController descriptionTextEditingController =
       TextEditingController();
+  TextEditingController updateTextEditingController = TextEditingController();
   GlobalKey<FormState> postKey = GlobalKey<FormState>();
 
   Future<void> createForums() async {
@@ -143,6 +145,7 @@ class ForumsCubit extends Cubit<ForumsStates> {
       titleTextEditingController.clear();
       descriptionTextEditingController.clear();
       imagesBase64.clear();
+      updateTextEditingController.clear();
       emit(CreateForumsSuccessState());
       await getAllForumsData();
       await getMyForumsData();
@@ -235,6 +238,7 @@ class ForumsCubit extends Cubit<ForumsStates> {
     titleTextEditingController.clear();
     descriptionTextEditingController.clear();
     commentTextEditingController.clear();
+    updateTextEditingController.clear();
     filterForumsList.clear();
     //allForumsIsLikeByMe.clear();
     //myForumsIsLikeByMe.clear();

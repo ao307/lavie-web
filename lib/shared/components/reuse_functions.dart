@@ -2,6 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:lavie_web/shared/components/constants.dart';
 import 'package:lavie_web/shared/themes/colors.dart';
 
 import '../cubit/cubit.dart';
@@ -83,9 +84,9 @@ String? validateEmail(String? value) {
 String? validateName(String? value, String? order) {
   const String pattern = r"^\s*([A-Za-z]{1,}([\.,] |[-']|))+[A-Za-z]+\.?\s*$";
   final RegExp regex = RegExp(pattern);
-  if (value == null || value.isEmpty ) {
+  if (value == null || value.isEmpty) {
     return 'enter your $order name'.tr().toCapitalized();
-  } else if (!regex.hasMatch(value)|| value.length < 3) {
+  } else if (!regex.hasMatch(value) || value.length < 3) {
     return 'enter a valid name'.tr().toCapitalized();
   } else {
     return null;
@@ -167,14 +168,15 @@ void showMyDialog({
   VoidCallback? btnCancelOnPress,
   VoidCallback? btnOkOnPress,
   DialogType? dialogType,
+  double? width,
 }) {
   AwesomeDialog(
     context: context,
     dialogType: dialogType ?? DialogType.NO_HEADER,
-    width: screenW(context) * .3,
+    width: width ?? screenW(context) * .3,
     animType: AnimType.BOTTOMSLIDE,
-    title: "title",
-    desc: 'Dialog description here.............',
+    title: title ?? '',
+    //desc: 'Dialog description here.............',
     body: body,
     btnCancelOnPress: btnCancelOnPress,
     btnOkOnPress: btnOkOnPress,

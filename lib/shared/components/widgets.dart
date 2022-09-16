@@ -247,17 +247,19 @@ class ReuseOutLinedButton extends StatelessWidget {
     this.txtColor = MyColors.cPrimary,
     this.txt,
     this.borderColor =  MyColors.cPrimary,
+    this.height =  54,
   }) : super(key: key);
   final VoidCallback? onPressed;
   final Color? txtColor;
   final Color? borderColor;
   final String? txt;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 45,
+      height: height,
       child: OutlinedButton(
         onPressed: onPressed,
         style: ButtonStyle(
@@ -266,14 +268,14 @@ class ReuseOutLinedButton extends StatelessWidget {
           side: MaterialStateProperty.all(
             BorderSide(color: borderColor!),
           ),
-          padding: MaterialStateProperty.all(
-            const EdgeInsets.only(
-              right: 75,
-              left: 75,
-              top: 12.5,
-              bottom: 12.5,
-            ),
-          ),
+          // padding: MaterialStateProperty.all(
+          //   const EdgeInsets.only(
+          //     right: 75,
+          //     left: 75,
+          //     top: 12.5,
+          //     bottom: 12.5,
+          //   ),
+          // ),
           backgroundColor: MaterialStateProperty.all(Colors.transparent),
           shape: MaterialStateProperty.all(
             RoundedRectangleBorder(
@@ -282,7 +284,7 @@ class ReuseOutLinedButton extends StatelessWidget {
           ),
         ),
         child: Text(
-          '$txt'.tr().toTitleCase(),
+          '$txt'.tr().toUpperCase(),
           style: TextStyle(
             color: txtColor,
             fontSize: textSizeMedium,

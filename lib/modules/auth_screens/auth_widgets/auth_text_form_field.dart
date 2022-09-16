@@ -10,6 +10,7 @@ class AuthTextFormField extends StatelessWidget {
   final TextInputType? keyboardType;
   final FormFieldValidator? validator;
   final bool? obscure;
+  final bool? readOnly;
   final String? hintText;
   final String? labelText;
   final Widget? suffixIcon;
@@ -21,22 +22,28 @@ class AuthTextFormField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          labelText!.tr().toTitleCase(),
-          style: const TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: textSizeLarge,
-            color: MyColors.cTextSubtitleLight,
-          ),
-        ),
-        const SizedBox(
-          height: paddingSmall,
+        if(labelText!=null)
+        Column(
+          children: [
+            Text(
+              labelText!.tr().toTitleCase(),
+              style: const TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: textSizeLarge,
+                color: MyColors.cTextSubtitleLight,
+              ),
+            ),
+            const SizedBox(
+              height: paddingSmall,
+            ),
+          ],
         ),
         TextFormField(
           controller: textEditingController,
           keyboardType: keyboardType,
           obscureText: obscure ?? false,
           validator: validator,
+          readOnly: readOnly??false,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           maxLines: maxLines,
           decoration: InputDecoration(
@@ -73,10 +80,11 @@ class AuthTextFormField extends StatelessWidget {
     this.keyboardType,
     this.validator,
     this.obscure,
-    required this.hintText,
-    required this.labelText,
+     this.hintText="",
+     this.labelText,
     this.suffixIcon,
     this.underWidget,
     this.maxLines=1,
+    this.readOnly,
   }) : super(key: key);
 }
