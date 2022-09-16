@@ -32,6 +32,7 @@ class AllForumsBody extends StatelessWidget {
             return ListView.separated(
               itemCount: forums.data!.length,
               padding: const EdgeInsetsDirectional.only(
+                top: paddingMedium,
                 start: paddingMedium,
                 end: paddingMedium,
               ),

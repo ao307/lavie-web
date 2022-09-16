@@ -25,9 +25,11 @@ class ForumsScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         return BaseWidget(
-          child: Row(
+          child: Stack(
+            alignment: AlignmentDirectional.topEnd,
             children: [
-              Expanded(
+              Padding(
+                padding: EdgeInsetsDirectional.only(end: screenW(context) * .3),
                 child: TapBarReUse(
                   initialIndex: forumsScreenCubit.indexOfForumsTap,
                   listOfTabsText: forumsScreenCubit.forumsText,
@@ -63,16 +65,19 @@ class ForumsScreen extends StatelessWidget {
                         const SizedBox(
                           height: paddingLarge,
                         ),
-                        ReuseOutLinedButton(
-                          txt: "create post",
-                          onPressed: () {
-                            showMyDialog(
-                              context: context,
-                              title: "create new post".tr().toCapitalized(),
-                              width: screenW(context) * .9,
-                              body: const CreatePostScreen(),
-                            );
-                          },
+                        SizedBox(
+                          height: 50,
+                          child: ReuseOutLinedButton(
+                            txt: "create post",
+                            onPressed: () {
+                              showMyDialog(
+                                context: context,
+                                title: "create new post".tr().toCapitalized(),
+                                width: screenW(context) * .9,
+                                body: const CreatePostScreen(),
+                              );
+                            },
+                          ),
                         ),
                       ],
                     ),
