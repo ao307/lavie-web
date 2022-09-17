@@ -219,7 +219,7 @@ class ForumsCubit extends Cubit<ForumsStates> {
     if (value.isNotEmpty) {
       filterForumsList = allForumsModel!.data!
           .where(
-            (o) => "${o.user!.firstName!} ${o.user!.lastName!}".contains(value),
+            (o) => "${o.user!.firstName!.toLowerCase()} ${o.user!.lastName!.toLowerCase()}".contains(value.toLowerCase()),
           )
           .toList();
       filterForumsList.isEmpty

@@ -10,7 +10,7 @@ import 'package:lavie_web/shared/components/widgets.dart';
 import 'package:lavie_web/shared/cubit/products_cubit/products_cubit.dart';
 import '../../layout/web_base_tab/web_base_tab.dart';
 import '../../shared/cubit/products_cubit/products_states.dart';
-import '../product_scan_screen/scan_product_screen.dart';
+import '../single_blog_screen/single_product_screen.dart';
 
 class BlogsScreen extends StatelessWidget {
   const BlogsScreen({Key? key}) : super(key: key);
@@ -37,10 +37,15 @@ class BlogsScreen extends StatelessWidget {
                       toLengthIf.tools!.isNotEmpty
                   ? Column(
                       children: [
-                        Text(
-                          'blogs'.tr().toTitleCase(),
-                          style: const TextStyle(
-                            fontSize: textSizeLarge,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: paddingLarge * 1.5,
+                          ),
+                          child: Text(
+                            'blogs'.tr().toTitleCase(),
+                            style: const TextStyle(
+                              fontSize: textSizeLarge * 1.2,
+                            ),
                           ),
                         ),
                         Expanded(
@@ -61,8 +66,9 @@ class BlogsScreen extends StatelessWidget {
                                     itemCount: productsCubit
                                         .blogsModel!.data!.plants!.length,
                                     gridDelegate:
-                                        const SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 3,
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount:
+                                          screenW(context) <= 863 ? 2 : 3,
                                       crossAxisSpacing: paddingLarge * 2,
                                       mainAxisSpacing: paddingLarge * 2,
                                       childAspectRatio: 1.16,
@@ -75,7 +81,7 @@ class BlogsScreen extends StatelessWidget {
                                       onTap: () {
                                         navigateTo(
                                           context: context,
-                                          widget: ScanProductScreen(
+                                          widget: SingleBlogScreen(
                                             imageUrl: productsCubit
                                                     .blogsModel!
                                                     .data!
@@ -106,8 +112,9 @@ class BlogsScreen extends StatelessWidget {
                                     itemCount: productsCubit
                                         .blogsModel!.data!.seeds!.length,
                                     gridDelegate:
-                                        const SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 3,
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount:
+                                          screenW(context) <= 863 ? 2 : 3,
                                       crossAxisSpacing: paddingLarge * 2,
                                       mainAxisSpacing: paddingLarge * 2,
                                       childAspectRatio: 1.16,
@@ -126,8 +133,9 @@ class BlogsScreen extends StatelessWidget {
                                     itemCount: productsCubit
                                         .blogsModel!.data!.tools!.length,
                                     gridDelegate:
-                                        const SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 3,
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount:
+                                          screenW(context) <= 863 ? 2 : 3,
                                       crossAxisSpacing: paddingLarge * 2,
                                       mainAxisSpacing: paddingLarge * 2,
                                       childAspectRatio: 1.16,

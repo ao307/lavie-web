@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lavie_web/shared/components/constants.dart';
+import 'package:lavie_web/shared/components/responsive.dart';
 import '../../../models/add_to_cart_model.dart';
 import '../../../shared/components/widgets.dart';
 import '../../../shared/cubit/products_cubit/products_cubit.dart';
@@ -27,6 +28,12 @@ class AllProductsBody extends StatelessWidget {
           padding: const EdgeInsets.symmetric(
             horizontal: paddingMedium,
             vertical: paddingLarge * 1.5,
+          ),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: Responsive.isMobile(context) != true ? 5 : 3,
+            childAspectRatio: 3 / 4.4,
+            crossAxisSpacing: paddingMedium,
+            mainAxisSpacing: paddingLarge * 2,
           ),
           itemBuilder: (BuildContext context, int index) {
             if (allProduct.data![index].plant != null) {
@@ -80,12 +87,6 @@ class AllProductsBody extends StatelessWidget {
             }
             return Container();
           },
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 3 / 4.4,
-            crossAxisSpacing: paddingMedium,
-            mainAxisSpacing: paddingLarge * 2,
-          ),
         );
       },
     );

@@ -248,7 +248,7 @@ class ProductsCubit extends Cubit<ProductsStates> {
     if (value.isNotEmpty) {
       filterProductsList = productsModel!.data!
           .where(
-            (o) => "${o.name}".contains(value),
+            (o) => o.name!.toLowerCase().contains(value.toLowerCase()),
           )
           .toList();
       allFilterCount.clear();

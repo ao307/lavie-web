@@ -35,7 +35,7 @@ class ForumsItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: paddingLarge*2),
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(borderRadiusMedium),
           color: Colors.white,
           boxShadow: [
             BoxShadow(

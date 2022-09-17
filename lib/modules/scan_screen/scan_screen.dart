@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lavie_web/modules/product_scan_screen/scan_product_screen.dart';
 import 'package:lavie_web/shared/components/constants.dart';
 import 'package:lavie_web/shared/components/reuse_functions.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import '../../layout/web_base_tab/web_base_tab.dart';
 import '../../shared/cubit/scan_cubit/scan_cubit.dart';
 import '../../shared/cubit/scan_cubit/scan_states.dart';
+import '../single_blog_screen/single_product_screen.dart';
 
 // ignore: must_be_immutable
 class ScanScreen extends StatelessWidget {
@@ -22,7 +22,7 @@ class ScanScreen extends StatelessWidget {
         if (state is GetScanProductSuccessState) {
           navigateTo(
             context: context,
-            widget: const ScanProductScreen(),
+            widget: const SingleBlogScreen(),
           );
         }
       },

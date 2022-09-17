@@ -1,7 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:lavie_web/modules/notification_screen/notification_item/notification_item.dart';
 import 'package:lavie_web/shared/components/constants.dart';
+import 'package:lavie_web/shared/components/reuse_functions.dart';
 import 'package:lavie_web/shared/cubit/cubit.dart';
 import 'package:lavie_web/shared/cubit/states.dart';
 import '../../layout/web_base_tab/web_base_tab.dart';
@@ -23,35 +26,59 @@ class NotificationScreen extends StatelessWidget {
             final profileModel = profileCubit.profileDataModel;
             if (snapshot.connectionState == ConnectionState.waiting &&
                 profileModel == null) {
-              return const LoadingPage(
-              );
+              return const LoadingPage();
             } else if (snapshot.hasError || profileModel == null) {
-              return const ErrorPage(
-              );
+              return const ErrorPage();
             }
-            return BaseWidget(
-              child: profileModel.data!.userNotification!.isNotEmpty
-                  ? ListView.separated(
-                      padding: const EdgeInsetsDirectional.only(
-                        bottom: paddingLarge * 5,
+            return profileModel.data!.userNotification!.isNotEmpty
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'notification'.tr().toTitleCase(),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: textSizeMedium,
+                              ),
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                AppCubit.get(context).changeNotificationShow();
+                              },
+                              icon: const Icon(
+                                IconlyBroken.closeSquare,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      itemCount: profileModel.data!.userNotification!.length,
-                      separatorBuilder: (BuildContext context, int index) =>
-                          const MyDivider(),
-                      itemBuilder: (BuildContext context, int index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(paddingSmall),
-                          child: NotificationItem(
-                            userNotification:
-                                profileModel.data!.userNotification![index],
-                          ),
-                        );
-                      },
-                    )
-                  : const EmptyWidget(
+                      Expanded(
+                        child: ListView.separated(
+                          itemCount:
+                              profileModel.data!.userNotification!.length,
+                          separatorBuilder: (BuildContext context, int index) =>
+                              const MyDivider(),
+                          itemBuilder: (BuildContext context, int index) {
+                            return Padding(
+                              padding: const EdgeInsets.all(paddingSmall),
+                              child: NotificationItem(
+                                userNotification:
+                                    profileModel.data!.userNotification![index],
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  )
+                : const EmptyWidget(
                     subTitle: "no notification yet.",
-                  ),
-            );
+                  );
           },
         );
       },

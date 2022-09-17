@@ -1,8 +1,12 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lavie_web/shared/cubit/profile_cubit/profile_states.dart';
 
 import '../../../models/profile_data_model.dart';
+import '../../../modules/forums_screen/forums_body/all_forums_body.dart';
+import '../../../modules/forums_screen/forums_body/my_forums_body.dart';
+import '../../../modules/profile_screen/profile_body/personal_information_body.dart';
 import '../../api/end_points.dart';
 import '../../api/remote/dio_helper.dart';
 import '../../components/constants.dart';
@@ -14,6 +18,21 @@ class ProfileCubit extends Cubit<ProfileStates> {
   // ignore: type_annotate_public_apis
   static ProfileCubit get(context) => BlocProvider.of(context);
 
+  List<String> profileText = [
+    "personal information",
+    "profile picture",
+  ];
+  List<Widget> profileBody = [
+    const PersonalInformation(),
+    const PersonalInformation(),
+  ];
+  int indexOfProfileTap = 0;
+
+  void changeIndexOfProfileTap(int index) {
+    indexOfProfileTap = index;
+    emit(AnyState());
+  }
+
   ProfileDataModel? profileDataModel;
 
   Future<void> getProfileData() async {
@@ -23,6 +42,10 @@ class ProfileCubit extends Cubit<ProfileStates> {
       token: accessTokenConst,
     ).then((value) async {
       profileDataModel = ProfileDataModel.fromJson(value.data);
+      emailInfo.text= profileDataModel!.data!.email??'';
+      firstNameInfo.text= profileDataModel!.data!.firstName??'';
+      lastNameInfo.text= profileDataModel!.data!.lastName??'';
+      imageUrlInfo.text= profileDataModel!.data!.imageUrl??'';
       emit(GetProfileDataSuccessState());
     }).catchError((onError) {
       if (kDebugMode) {
@@ -33,39 +56,33 @@ class ProfileCubit extends Cubit<ProfileStates> {
     });
   }
 
-  Future<void> updateProfileName(String firstName, String lastName) async {
+  GlobalKey<FormState> personalInfoKey = GlobalKey<FormState>();
+  TextEditingController firstNameInfo = TextEditingController();
+  TextEditingController lastNameInfo = TextEditingController();
+  TextEditingController imageUrlInfo = TextEditingController();
+  TextEditingController emailInfo = TextEditingController();
+
+  Future<void> updateProfile() async {
     emit(GetProfileDataLoadingState());
     await DioHelper.patchData(
       endPoint: currentUserDataEP,
       token: accessTokenConst,
-      data: {"firstName": firstName, "lastName": lastName},
-    ).then((value) async {
-      emit(GetProfileDataSuccessState());
-    }).catchError((onError) {
-      if (kDebugMode) {
-        showToast(msg: 'error on get updateProfileName');
-        printFullText(onError.toString());
-      }
-      emit(GetProfileDataErrorState(onError.toString()));
-    });
-  }
-
-  Future<void> updateProfileEmail(String email) async {
-    emit(UpdateProfileDataLoadingState());
-    await DioHelper.patchData(
-      endPoint: currentUserDataEP,
-      token: accessTokenConst,
       data: {
-        "email": email,
+        "firstName": firstNameInfo.text,
+        "lastName": lastNameInfo.text,
+        "imageUrl": imageUrlInfo.text,
+        "email": emailInfo.text,
       },
     ).then((value) async {
-      emit(UpdateProfileDataSuccessState());
+      await getProfileData();
+      showToast(msg: 'updated successfully');
     }).catchError((onError) {
       if (kDebugMode) {
         showToast(msg: 'error on get updateProfileName');
         printFullText(onError.toString());
       }
-      emit(UpdateProfileDataErrorState(onError.toString()));
+      showToast(msg: 'email may be exist.');
+      emit(GetProfileDataErrorState(onError.toString()));
     });
   }
 }

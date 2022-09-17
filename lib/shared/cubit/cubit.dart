@@ -33,6 +33,14 @@ class AppCubit extends Cubit<AppStates> {
     emit(AppChangeThemeState());
   }
 
+  static bool notificationShow = false;
+
+  void changeNotificationShow() {
+    notificationShow = !notificationShow;
+    emit(AppChangeThemeState());
+  }
+
+
   int currentIndexOfBottom = 0;
 
   Future<void> changeIndex(int index) async {

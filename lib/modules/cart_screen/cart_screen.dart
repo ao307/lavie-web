@@ -27,11 +27,12 @@ class MyCartScreen extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.symmetric(
-                          vertical: paddingLarge * 2),
+                        vertical: paddingLarge * 1.5,
+                      ),
                       child: Text(
                         'my cart'.tr().toTitleCase(),
                         style: const TextStyle(
-                          fontSize: textSizeLarge * 2,
+                          fontSize: textSizeLarge * 1.2,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lavie_web/shared/components/constants.dart';
 
 import '../../../models/add_to_cart_model.dart';
+import '../../../shared/components/responsive.dart';
 import '../../../shared/components/widgets.dart';
 import '../../../shared/cubit/products_cubit/products_cubit.dart';
 import '../../../shared/cubit/products_cubit/products_states.dart';
@@ -14,6 +15,7 @@ class ToolsBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ProductsCubit productScreenCubit = ProductsCubit.get(context);
+    print(MediaQuery.of(context).size.width.toString());
     return BlocConsumer<ProductsCubit, ProductsStates>(
       listener: (context, state) {},
       builder: (context, state) {
@@ -25,6 +27,12 @@ class ToolsBody extends StatelessWidget {
           padding: const EdgeInsets.symmetric(
             horizontal: paddingMedium,
             vertical: paddingLarge * 1.5,
+          ),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: Responsive.isMobile(context) != true ? 5 : 3,
+            childAspectRatio: 3 / 4.4,
+            crossAxisSpacing: paddingMedium,
+            mainAxisSpacing: paddingLarge * 2,
           ),
           itemBuilder: (BuildContext context, int index) {
             return ToolsGridItem(
@@ -43,12 +51,6 @@ class ToolsBody extends StatelessWidget {
               ),
             );
           },
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 3 / 4.4,
-            crossAxisSpacing: paddingMedium,
-            mainAxisSpacing: paddingLarge * 2,
-          ),
         );
       },
     );

@@ -11,10 +11,12 @@ class TapBarReUse extends StatelessWidget {
   final List<Widget>? listOfViewsBody;
   final Function(int)? onChange;
   final TabBarIndicatorSize? tabBarIndicatorSize;
+  final double? tabBarHPadding;
 
   const TapBarReUse({
     Key? key,
     required this.initialIndex,
+    this.tabBarHPadding,
     required this.listOfTabsText,
     required this.listOfViewsBody,
     required this.onChange,
@@ -29,8 +31,8 @@ class TapBarReUse extends StatelessWidget {
         indicatorSize: tabBarIndicatorSize ?? TabBarIndicatorSize.tab,
         height: 100,
         isScrollable: true,
-        padding: const EdgeInsets.symmetric(
-          horizontal: paddingMedium,
+        padding: EdgeInsets.symmetric(
+          horizontal: tabBarHPadding ?? paddingMedium,
         ),
         labelPadding: const EdgeInsets.symmetric(
           horizontal: paddingMedium,
