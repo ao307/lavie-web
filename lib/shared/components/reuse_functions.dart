@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lavie_web/shared/components/constants.dart';
 import 'package:lavie_web/shared/themes/colors.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../cubit/cubit.dart';
 
@@ -197,4 +198,12 @@ String getTimeDifferenceFromNow(String dateTime) {
   } else {
     return "${difference.inDays}d ago";
   }
+}
+
+Future<void> launchUrlFun(String? uri) async {
+  final Uri url = Uri.parse(uri!);
+  if (!await launchUrl(url)) {
+    throw 'Could not launch $url';
+  }
+
 }

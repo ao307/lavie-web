@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:lavie_web/shared/components/constants.dart';
 import 'package:lavie_web/shared/components/reuse_functions.dart';
 
+import '../../layout/web_base_tab/footter_widget.dart';
 import '../../layout/web_base_tab/web_base_tab.dart';
 import '../../shared/components/image_assets.dart';
 import '../../shared/themes/colors.dart';
@@ -74,131 +75,7 @@ class SingleBlogScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              color: MyColors.cTextSubtitleLight.withOpacity(.1),
-              padding: const EdgeInsets.all(paddingLarge * 2),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Image.asset(
-                          ImagesInAssets.logoImage,
-                          width: 120,
-                        ),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Text(
-                              'LA VIE ',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: MyColors.cPrimary,
-                              ),
-                            ),
-                            Expanded(
-                              child: Text(
-                                "We're dedicated to giving you the very best of plants, with a focus on dependability",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: MyColors.cTextSubtitleLight,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    width: paddingLarge * 4,
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        TitleOfFooter(txt: 'sections'),
-                        SubTitleOfFooter(txt: 'home',),
-                        SubTitleOfFooter(txt: 'category',),
-                        SubTitleOfFooter(txt: 'new',),
-                        SubTitleOfFooter(txt: 'request to be seller',),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    width: paddingLarge * 4,
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Image.asset(
-                          ImagesInAssets.logoImage,
-                          width: 120,
-                        ),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Text(
-                              'LA VIE ',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: MyColors.cPrimary,
-                              ),
-                            ),
-                            Expanded(
-                              child: Text(
-                                "We're dedicated to giving you the very best of plants, with a focus on dependability",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: MyColors.cTextSubtitleLight,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    width: paddingLarge * 4,
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Image.asset(
-                          ImagesInAssets.logoImage,
-                          width: 120,
-                        ),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Text(
-                              'LA VIE ',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: MyColors.cPrimary,
-                              ),
-                            ),
-                            Expanded(
-                              child: Text(
-                                "We're dedicated to giving you the very best of plants, with a focus on dependability",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: MyColors.cTextSubtitleLight,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            const FooterWidget(),
           ],
         ),
       ),
@@ -260,34 +137,4 @@ class ItemProductScan extends StatelessWidget {
   }
 }
 
-class TitleOfFooter extends StatelessWidget {
-  const TitleOfFooter({Key? key,required this.txt}) : super(key: key);
-  final String? txt;
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      '$txt'.tr().toUpperCase(),
-      style: const TextStyle(
-        fontWeight: FontWeight.bold,
-        color: MyColors.cPrimary,
-        fontSize: textSizeMedium,
-      ),
-    );
-  }
-}
 
-class SubTitleOfFooter extends StatelessWidget {
-  const SubTitleOfFooter({Key? key,required this.txt}) : super(key: key);
-  final String? txt;
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      '$txt'.tr().toTitleCase(),
-      style: const TextStyle(
-        fontWeight: FontWeight.bold,
-        color: MyColors.cTextSubtitleLight,
-        height: 2,
-      ),
-    );
-  }
-}
