@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:lavie_web/shared/components/image_assets.dart';
 import 'package:lavie_web/shared/cubit/cubit.dart';
-import 'package:popover/popover.dart';
 import '../../modules/auth_screens/auth_widgets/ritch_text_button_.dart';
 import '../../modules/cart_screen/cart_screen.dart';
 import '../../modules/notification_screen/notification_screen.dart';
@@ -72,7 +71,9 @@ class BaseWidget extends StatelessWidget {
                                           index == appCubit.currentIndexOfTitle,
                                       onPressed: () {
                                         appCubit.changeIndexOfTitle(
-                                            index, context);
+                                          index,
+                                          context,
+                                        );
                                       },
                                     ),
                                   ),
@@ -103,8 +104,9 @@ class BaseWidget extends StatelessWidget {
                                     IconButton(
                                       onPressed: () {
                                         navigateAndFinish(
-                                            context: context,
-                                            widget: const ProfileScreen());
+                                          context: context,
+                                          widget: const ProfileScreen(),
+                                        );
                                       },
                                       icon: const CircleAvatar(
                                         radius: 15,

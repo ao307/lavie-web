@@ -41,7 +41,11 @@ class ProductsCubit extends Cubit<ProductsStates> {
     emit(AnyState());
   }
 
-  // TODO: Blogs Functions
+  void anyState() {
+    emit(AnyState());
+  }
+
+// TODO: Blogs Functions
   BlogsModel? blogsModel;
 
   Future<void> getBlogs() async {
@@ -66,7 +70,7 @@ class ProductsCubit extends Cubit<ProductsStates> {
   List<ProductData> productSeed = [];
   List<ProductData> productTool = [];
 
-  // TODO: Products Functions
+// TODO: Products Functions
   Future<void> getProducts() async {
     emit(GetProductsDataLoadingState());
     await DioHelper.getData(
@@ -112,7 +116,7 @@ class ProductsCubit extends Cubit<ProductsStates> {
     }
   }
 
-  // TODO: functions of number of all product counter
+// TODO: functions of number of all product counter
   List<int> allProductCount = [];
 
   void addAllProductsFun(int index) {
@@ -129,7 +133,7 @@ class ProductsCubit extends Cubit<ProductsStates> {
     emit(AnyState());
   }
 
-  // TODO: functions of number of plants counter
+// TODO: functions of number of plants counter
 
   List<int> plantsCount = [];
 
@@ -147,7 +151,7 @@ class ProductsCubit extends Cubit<ProductsStates> {
     emit(AnyState());
   }
 
-  // TODO:functions of  number of seeds counter
+// TODO:functions of  number of seeds counter
   List<int> seedsCount = [];
 
   void addSeedsFun(int index) {
@@ -164,7 +168,7 @@ class ProductsCubit extends Cubit<ProductsStates> {
     emit(AnyState());
   }
 
-  // TODO:functions of number of tools counter
+// TODO:functions of number of tools counter
   List<int> toolsCount = [];
 
   void addToolsFun(int index) {
@@ -181,7 +185,7 @@ class ProductsCubit extends Cubit<ProductsStates> {
     emit(AnyState());
   }
 
-  // TODO: add to cart functions
+// TODO: add to cart functions
   List<DataCard> listOfDataCart = [];
   List<int> cartCount = [];
   int totalCart = 0;
@@ -265,7 +269,7 @@ class ProductsCubit extends Cubit<ProductsStates> {
     emit(AnyState());
   }
 
-  // TODO: functions of number of AllFilter counter
+// TODO: functions of number of AllFilter counter
   List<int> allFilterCount = [];
 
   void addAllFilterFun(int index) {

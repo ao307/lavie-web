@@ -10,7 +10,7 @@ class BackLeaves extends StatelessWidget {
     return Stack(
       alignment: AlignmentDirectional.center,
       children: [
-        Column(
+        Stack(
           children: [
             Align(
               alignment: AlignmentDirectional.topStart,
@@ -19,7 +19,6 @@ class BackLeaves extends StatelessWidget {
                 width: 120,
               ),
             ),
-            const Spacer(),
             Align(
               alignment: AlignmentDirectional.bottomEnd,
               child: Transform.scale(

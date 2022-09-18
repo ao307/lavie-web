@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:lavie_web/modules/auth_screens/auth_screen.dart';
-import 'package:lavie_web/modules/forums_screen/forums_screen.dart';
+import 'package:lavie_web/modules/quiz_screen/quiz_screen.dart';
 import 'package:lavie_web/shared/api/remote/dio_helper.dart';
 import 'package:lavie_web/shared/bloc_observer.dart';
 import 'package:lavie_web/shared/components/constants.dart';
@@ -13,6 +13,7 @@ import 'package:lavie_web/shared/cubit/cubit.dart';
 import 'package:lavie_web/shared/cubit/forums_cubit/forums_cubit.dart';
 import 'package:lavie_web/shared/cubit/products_cubit/products_cubit.dart';
 import 'package:lavie_web/shared/cubit/profile_cubit/profile_cubit.dart';
+import 'package:lavie_web/shared/cubit/quiz_cubit/quiz_cubit.dart';
 import 'package:lavie_web/shared/cubit/scan_cubit/scan_cubit.dart';
 import 'package:lavie_web/shared/cubit/states.dart';
 import 'package:lavie_web/shared/themes/themes.dart';
@@ -33,7 +34,7 @@ Future<void> startScreen() async {
   if (refreshTokenConst != null &&
       accessTokenConst != null &&
       userIdConst != null) {
-    startScreenDoctor = const ForumsScreen();
+    startScreenDoctor = const QuizScreen();
   }
 }
 
@@ -73,6 +74,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => ProfileCubit()),
         BlocProvider(create: (context) => ForumsCubit()),
         BlocProvider(create: (context) => ScanCubit()),
+        BlocProvider(create: (context) => QuizCubit()),
       ],
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (context, state) {},

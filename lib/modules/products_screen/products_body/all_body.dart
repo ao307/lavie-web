@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lavie_web/shared/components/constants.dart';
 import 'package:lavie_web/shared/components/responsive.dart';
+import 'package:lavie_web/shared/components/reuse_functions.dart';
 import '../../../models/add_to_cart_model.dart';
 import '../../../shared/components/widgets.dart';
 import '../../../shared/cubit/products_cubit/products_cubit.dart';
 import '../../../shared/cubit/products_cubit/products_states.dart';
+import '../../single_product_screen/single_product_screen.dart';
 import '../products_widgets/plants_item.dart';
 import '../products_widgets/seeds_item.dart';
 import '../products_widgets/tools_item.dart';
@@ -51,6 +53,14 @@ class AllProductsBody extends StatelessWidget {
                     productId: allProduct.data![index].productId,
                   ),
                 ),
+                onTap: () {
+                  navigateTo(
+                    context: context,
+                    widget: SingleProductScreen(
+                      productData: allProduct.data![index],
+                    ),
+                  );
+                },
               );
             } else if (allProduct.data![index].seed != null) {
               return SeedsGridItem(
@@ -67,6 +77,14 @@ class AllProductsBody extends StatelessWidget {
                     productId: allProduct.data![index].productId,
                   ),
                 ),
+                onTap: (){
+                  navigateTo(
+                    context: context,
+                    widget: SingleProductScreen(
+                      productData: allProduct.data![index],
+                    ),
+                  );
+                },
               );
             } else if (allProduct.data![index].tool != null) {
               return ToolsGridItem(
@@ -83,7 +101,16 @@ class AllProductsBody extends StatelessWidget {
                     productId: allProduct.data![index].productId,
                   ),
                 ),
+                onTap: (){
+                  navigateTo(
+                    context: context,
+                    widget: SingleProductScreen(
+                      productData: allProduct.data![index],
+                    ),
+                  );
+                },
               );
+
             }
             return Container();
           },

@@ -3,9 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lavie_web/shared/components/constants.dart';
 import '../../../models/add_to_cart_model.dart';
 import '../../../shared/components/responsive.dart';
+import '../../../shared/components/reuse_functions.dart';
 import '../../../shared/components/widgets.dart';
 import '../../../shared/cubit/products_cubit/products_cubit.dart';
 import '../../../shared/cubit/products_cubit/products_states.dart';
+import '../../single_product_screen/single_product_screen.dart';
 import '../products_widgets/seeds_item.dart';
 
 class SeedsBody extends StatelessWidget {
@@ -49,6 +51,14 @@ class SeedsBody extends StatelessWidget {
                   productId: productScreenCubit.productSeed[index].productId,
                 ),
               ),
+              onTap: (){
+                navigateTo(
+                  context: context,
+                  widget: SingleProductScreen(
+                    productData: productScreenCubit.productSeed[index],
+                  ),
+                );
+              },
             );
           },
         );

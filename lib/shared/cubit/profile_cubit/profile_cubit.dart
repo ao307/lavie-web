@@ -4,8 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lavie_web/shared/cubit/profile_cubit/profile_states.dart';
 
 import '../../../models/profile_data_model.dart';
-import '../../../modules/forums_screen/forums_body/all_forums_body.dart';
-import '../../../modules/forums_screen/forums_body/my_forums_body.dart';
 import '../../../modules/profile_screen/profile_body/personal_information_body.dart';
 import '../../api/end_points.dart';
 import '../../api/remote/dio_helper.dart';

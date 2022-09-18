@@ -9,5 +9,6 @@ class ImagesInAssets {
   static const String dataImage = 'assets/image/data.png';
   static const String backgroundHome = 'assets/image/background-home.png';
   static const String basketImage = 'assets/image/basket.png';
+  static const String homeBackgroundImage = 'assets/image/home_background.png';
   ///
 }
