@@ -12,6 +12,7 @@ import 'package:lavie_web/shared/cubit/states.dart';
 
 import '../../modules/forums_screen/forums_screen.dart';
 import '../../modules/notification_screen/notification_screen.dart';
+import '../../modules/quiz_screen/quiz_screen.dart';
 import '../../modules/scan_screen/scan_screen.dart';
 
 class AppCubit extends Cubit<AppStates> {
@@ -56,14 +57,14 @@ class AppCubit extends Cubit<AppStates> {
     "about",
     "community",
   ];
-  int currentIndexOfTitle = 4;
+  int currentIndexOfTitle = 0;
 
   Future<void> changeIndexOfTitle(int index, BuildContext context) async {
     if (accessTokenConst != null) {
       currentIndexOfTitle = index;
       if (index == 0) {
         // home
-        navigateTo(context: context, widget: const ProductsScreen());
+        navigateTo(context: context, widget: const QuizScreen());
       } else if (index == 1) {
         // shop
         navigateTo(context: context, widget: const ProductsScreen());

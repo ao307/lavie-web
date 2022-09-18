@@ -2,7 +2,6 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:lavie_web/shared/components/constants.dart';
 import 'package:lavie_web/shared/themes/colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 

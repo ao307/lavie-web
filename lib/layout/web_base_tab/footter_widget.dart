@@ -1,11 +1,12 @@
 // ignore_for_file: unsafe_html
 
+import 'dart:html' as html;
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lavie_web/shared/components/constants.dart';
 import 'package:lavie_web/shared/components/reuse_functions.dart';
-import 'dart:html' as html;
 
 import '../../shared/components/image_assets.dart';
 import '../../shared/themes/colors.dart';
@@ -19,7 +20,6 @@ class FooterWidget extends StatelessWidget {
       color: MyColors.cTextSubtitleLight.withOpacity(.1),
       padding: const EdgeInsets.all(paddingLarge * 2),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // logo column

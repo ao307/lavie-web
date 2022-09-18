@@ -8,6 +8,7 @@ import 'package:lavie_web/shared/components/reuse_functions.dart';
 import 'package:lavie_web/shared/cubit/products_cubit/products_states.dart';
 
 import '../../../models/add_to_cart_model.dart';
+import '../../../shared/components/responsive.dart';
 import '../../../shared/components/widgets.dart';
 import '../../../shared/cubit/products_cubit/products_cubit.dart';
 import '../products_widgets/seeds_item.dart';
@@ -103,9 +104,9 @@ class SearchProductsScreen extends StatelessWidget {
                           }
                           return Container();
                         },
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount:
+                              Responsive.isMobile(context) != true ? 5 : 3,
                           childAspectRatio: 3 / 4.4,
                           crossAxisSpacing: paddingMedium,
                           mainAxisSpacing: paddingLarge * 2,
