@@ -21,12 +21,7 @@ class AppCubit extends Cubit<AppStates> {
 
   static AppCubit get(context) => BlocProvider.of(context);
 
-  List<Widget> screens = [
-    const HomeScreen(),
-    ScanScreen(),
-    const NotificationScreen(),
-    const ProfileScreen(),
-  ];
+
   static bool isDark = false;
 
   void changeThem() {
@@ -42,7 +37,6 @@ class AppCubit extends Cubit<AppStates> {
     emit(AppChangeThemeState());
   }
 
-
   int currentIndexOfBottom = 0;
 
   Future<void> changeIndex(int index) async {
@@ -55,11 +49,11 @@ class AppCubit extends Cubit<AppStates> {
     "home",
     "shop",
     "blog",
-    "about",
+   // "about",
     "community",
   ];
   int currentIndexOfTitle = 0;
-
+  final aboutKey = GlobalKey();
   Future<void> changeIndexOfTitle(int index, BuildContext context) async {
     if (accessTokenConst != null) {
       currentIndexOfTitle = index;
@@ -72,10 +66,7 @@ class AppCubit extends Cubit<AppStates> {
       } else if (index == 2) {
         // blog
         navigateTo(context: context, widget: const BlogsScreen());
-      } else if (index == 3) {
-        // about
-        navigateTo(context: context, widget: const BlogsScreen());
-      } else if (index == 4) {
+      }  else if (index == 3) {
         // community
         navigateTo(context: context, widget: const ForumsScreen());
       }

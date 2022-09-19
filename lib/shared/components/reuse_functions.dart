@@ -33,7 +33,7 @@ extension StringCasingExtension on String {
       .join(' ');
 }
 
-void navigateTo({required BuildContext context, required Widget widget}) =>
+Future<void> navigateTo({required BuildContext context, required Widget widget}) =>
     Navigator.push(
       context,
       MaterialPageRoute(
