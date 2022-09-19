@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lavie_web/modules/quiz_screen/home_widgets/home_background.dart';
-import 'package:lavie_web/modules/quiz_screen/home_widgets/quiz_item.dart';
+import 'package:lavie_web/modules/quiz_screen/quiz_widgets/home_background.dart';
+import 'package:lavie_web/modules/quiz_screen/quiz_widgets/quiz_item.dart';
 import 'package:lavie_web/shared/components/constants.dart';
 import 'package:lavie_web/shared/components/reuse_functions.dart';
 import 'package:lavie_web/shared/cubit/quiz_cubit/quiz_cubit.dart';
@@ -10,6 +10,7 @@ import '../../layout/web_base_tab/web_base_tab.dart';
 import '../../shared/components/widgets.dart';
 import '../../shared/cubit/quiz_cubit/quiz_states.dart';
 import '../auth_screens/auth_widgets/auth_button.dart';
+import '../home_screen/home_screen.dart';
 
 class QuizScreen extends StatelessWidget {
   const QuizScreen({Key? key}) : super(key: key);
@@ -72,6 +73,10 @@ class QuizScreen extends StatelessWidget {
                                           quizCubit.nextQuiz(index + 1);
                                           if (index == (quizList.length - 1)) {
                                             quizCubit.calcScore();
+                                            navigateAndFinish(
+                                              context: context,
+                                              widget: const HomeScreen(),
+                                            );
                                           }
                                         },
                                       ),

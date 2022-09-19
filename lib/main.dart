@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:lavie_web/modules/auth_screens/auth_screen.dart';
+import 'package:lavie_web/modules/home_screen/home_screen.dart';
 import 'package:lavie_web/modules/quiz_screen/quiz_screen.dart';
 import 'package:lavie_web/shared/api/remote/dio_helper.dart';
 import 'package:lavie_web/shared/bloc_observer.dart';
@@ -34,7 +35,7 @@ Future<void> startScreen() async {
   if (refreshTokenConst != null &&
       accessTokenConst != null &&
       userIdConst != null) {
-    startScreenDoctor = const QuizScreen();
+    startScreenDoctor = const HomeScreen();
   }
 }
 

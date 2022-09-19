@@ -18,6 +18,7 @@ class QuizCubit extends Cubit<QuizStates> {
 
   // calculate total score
   void calcScore() {
+    totalScore=0;
     for (final element in quizScore) {
       totalScore = totalScore + element;
     }

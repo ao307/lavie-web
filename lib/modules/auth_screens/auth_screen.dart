@@ -6,6 +6,7 @@ import 'package:lavie_web/modules/auth_screens/auth_widgets/background_leaves.da
 import 'package:lavie_web/modules/auth_screens/body/login_body.dart';
 import 'package:lavie_web/modules/auth_screens/body/signup_body.dart';
 import 'package:lavie_web/modules/forums_screen/forums_screen.dart';
+import 'package:lavie_web/modules/home_screen/home_screen.dart';
 import 'package:lavie_web/shared/components/constants.dart';
 import 'package:lavie_web/shared/components/reuse_functions.dart';
 import 'package:lavie_web/shared/themes/colors.dart';
@@ -24,7 +25,7 @@ class AuthScreen extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthStates>(
       listener: (context, state) {
         if (state is LoginSuccessState || state is SignUpSuccessState) {
-          navigateAndFinish(context: context, widget: const ForumsScreen());
+          navigateAndFinish(context: context, widget: const HomeScreen());
         }
       },
       builder: (BuildContext context, Object? state) {

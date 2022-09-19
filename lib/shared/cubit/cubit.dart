@@ -11,6 +11,7 @@ import 'package:lavie_web/shared/components/reuse_functions.dart';
 import 'package:lavie_web/shared/cubit/states.dart';
 
 import '../../modules/forums_screen/forums_screen.dart';
+import '../../modules/home_screen/home_screen.dart';
 import '../../modules/notification_screen/notification_screen.dart';
 import '../../modules/quiz_screen/quiz_screen.dart';
 import '../../modules/scan_screen/scan_screen.dart';
@@ -21,7 +22,7 @@ class AppCubit extends Cubit<AppStates> {
   static AppCubit get(context) => BlocProvider.of(context);
 
   List<Widget> screens = [
-    const ForumsScreen(),
+    const HomeScreen(),
     ScanScreen(),
     const NotificationScreen(),
     const ProfileScreen(),
@@ -64,7 +65,7 @@ class AppCubit extends Cubit<AppStates> {
       currentIndexOfTitle = index;
       if (index == 0) {
         // home
-        navigateTo(context: context, widget: const QuizScreen());
+        navigateTo(context: context, widget: const HomeScreen());
       } else if (index == 1) {
         // shop
         navigateTo(context: context, widget: const ProductsScreen());

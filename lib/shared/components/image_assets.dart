@@ -10,5 +10,8 @@ class ImagesInAssets {
   static const String backgroundHome = 'assets/image/background-home.png';
   static const String basketImage = 'assets/image/basket.png';
   static const String homeBackgroundImage = 'assets/image/home_background.png';
+  static const String treeInHomeImage = 'assets/image/treeInHome.png';
+  static const String aboutImage = 'assets/image/aboutImage.png';
+  static const String mobileApplicationImage = 'assets/image/mobileApplication.png';
   ///
 }
