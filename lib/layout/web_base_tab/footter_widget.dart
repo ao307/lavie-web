@@ -115,8 +115,8 @@ class FooterWidget extends StatelessWidget {
                 const SizedBox(
                   height: paddingSmall,
                 ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Wrap(
+               //   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     IconButton(
                       onPressed: () async {

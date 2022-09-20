@@ -13,5 +13,7 @@ class ImagesInAssets {
   static const String treeInHomeImage = 'assets/image/treeInHome.png';
   static const String aboutImage = 'assets/image/aboutImage.png';
   static const String mobileApplicationImage = 'assets/image/mobileApplication.png';
+  static const String playStoreImage = 'assets/image/play-store.png';
+  static const String appStoreImage = 'assets/image/app_store.png';
   ///
 }

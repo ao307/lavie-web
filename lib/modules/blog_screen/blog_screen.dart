@@ -124,6 +124,28 @@ class BlogsScreen extends StatelessWidget {
                                             BlogsSeedItem(
                                       model: productsCubit
                                           .blogsModel!.data!.seeds![index],
+                                      onTap: () {
+                                        navigateTo(
+                                          context: context,
+                                          widget: SingleBlogScreen(
+                                            imageUrl: productsCubit
+                                                    .blogsModel!
+                                                    .data!
+                                                    .seeds![index]
+                                                    .imageUrl ??
+                                                '',
+                                            name: productsCubit.blogsModel!
+                                                    .data!.seeds![index].name ??
+                                                '',
+                                            description: productsCubit
+                                                    .blogsModel!
+                                                    .data!
+                                                    .seeds![index]
+                                                    .description ??
+                                                '',
+                                          ),
+                                        );
+                                      },
                                     ),
                                   ),
                                   GridView.builder(
@@ -145,6 +167,28 @@ class BlogsScreen extends StatelessWidget {
                                             BlogsToolsItem(
                                       model: productsCubit
                                           .blogsModel!.data!.tools![index],
+                                      onTap: () {
+                                        navigateTo(
+                                          context: context,
+                                          widget: SingleBlogScreen(
+                                            imageUrl: productsCubit
+                                                    .blogsModel!
+                                                    .data!
+                                                    .tools![index]
+                                                    .imageUrl ??
+                                                '',
+                                            name: productsCubit.blogsModel!
+                                                    .data!.tools![index].name ??
+                                                '',
+                                            description: productsCubit
+                                                    .blogsModel!
+                                                    .data!
+                                                    .tools![index]
+                                                    .description ??
+                                                '',
+                                          ),
+                                        );
+                                      },
                                     ),
                                   ),
                                 ],

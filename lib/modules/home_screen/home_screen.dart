@@ -13,6 +13,7 @@ import '../../shared/cubit/quiz_cubit/quiz_states.dart';
 import '../../shared/cubit/states.dart';
 import '../../shared/themes/colors.dart';
 import '../auth_screens/auth_widgets/auth_button.dart';
+import '../auth_screens/auth_widgets/social_auth_button.dart';
 import '../quiz_screen/quiz_screen.dart';
 import '../quiz_screen/quiz_widgets/home_background.dart';
 
@@ -45,8 +46,7 @@ class HomeScreen extends StatelessWidget {
                                 horizontal: screenW(context) * .15,
                               ),
                               child: Column(
-                                crossAxisAlignment:
-                                CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
@@ -181,11 +181,9 @@ class HomeScreen extends StatelessWidget {
                           ),
                           Expanded(
                             child: Padding(
-                              padding:
-                              const EdgeInsets.all(paddingLarge * 2),
+                              padding: const EdgeInsets.all(paddingLarge * 2),
                               child: Column(
-                                crossAxisAlignment:
-                                CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
                                     'mobile application'.tr().toTitleCase(),
@@ -203,6 +201,37 @@ class HomeScreen extends StatelessWidget {
                                       color: MyColors.cTextSubtitleLight,
                                     ),
                                   ),
+                                  const SizedBox(
+                                    height: paddingLarge,
+                                  ),
+                                  Wrap(
+                                    runSpacing: paddingLarge,
+                                    children: [
+                                      SizedBox(
+                                        width: 150,
+                                        child: SocialAuthButton(
+                                          onPressed: () {},
+                                          text: 'play store',
+                                          image: ImagesInAssets.playStoreImage,
+                                          color: Colors.black,
+                                          textColor: Colors.white,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: paddingLarge,
+                                      ),
+                                      SizedBox(
+                                        width: 150,
+                                        child: SocialAuthButton(
+                                          onPressed: () {},
+                                          text: "app store",
+                                          image: ImagesInAssets.appStoreImage,
+                                          color: Colors.black,
+                                          textColor: Colors.white,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ],
                               ),
                             ),
@@ -216,7 +245,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               floatingActionButton: Padding(
-                padding: const EdgeInsets.all(paddingLarge*2),
+                padding: const EdgeInsets.all(paddingLarge * 2),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(30),
                   child: FloatingActionButton(
@@ -228,12 +257,15 @@ class HomeScreen extends StatelessWidget {
                     },
                     heroTag: "home",
                     tooltip: "Answer some questions and get points",
-                    child: const Icon(Icons.question_mark_outlined,color: Colors.white,size: 28,),
+                    child: const Icon(
+                      Icons.question_mark_outlined,
+                      color: Colors.white,
+                      size: 28,
+                    ),
                   ),
                 ),
               ),
-              floatingActionButtonLocation:
-              FloatingActionButtonLocation.endTop,
+              floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
             ),
           ),
         );

@@ -10,7 +10,7 @@ class BlogsPlantItem extends StatelessWidget {
   const BlogsPlantItem({
     Key? key,
     required this.model,
-     this.onTap,
+    this.onTap,
   }) : super(key: key);
   final BlogsPlants? model;
   final GestureTapCallback? onTap;

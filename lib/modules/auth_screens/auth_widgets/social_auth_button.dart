@@ -24,7 +24,7 @@ class SocialAuthButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(borderRadiusLarge),
+        borderRadius: BorderRadius.circular(borderRadiusMedium),
         // gradient: const LinearGradient(
         //     colors: [Color(0xffffffff), Color(0xffffffff)]),
       ),
@@ -41,7 +41,7 @@ class SocialAuthButton extends StatelessWidget {
             MaterialStateProperty.all(color ?? Colors.white),
             shape: MaterialStateProperty.all(
               RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(borderRadiusLarge),
+                borderRadius: BorderRadius.circular(borderRadiusMedium),
               ),
             ),
           ),
@@ -53,12 +53,15 @@ class SocialAuthButton extends StatelessWidget {
               const SizedBox(
                 width: paddingSmall,
               ),
-              Text(
-                text.tr().toCapitalized(),
-                style: TextStyle(
-                  color: textColor ?? MyColors.cPrimary,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 16,
+              Expanded(
+                child: Text(
+                  text.tr().toCapitalized(),
+                  style: TextStyle(
+                    color: textColor ?? MyColors.cPrimary,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 16,
+                    overflow: TextOverflow.ellipsis
+                  ),
                 ),
               ),
             ],
