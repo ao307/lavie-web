@@ -73,7 +73,9 @@ class ErrorPage extends StatelessWidget {
 }
 
 class EmptyWidget extends StatelessWidget {
-  const EmptyWidget({Key? key, this.title, this.subTitle,this.image,this.child}) : super(key: key);
+  const EmptyWidget(
+      {Key? key, this.title, this.subTitle, this.image, this.child})
+      : super(key: key);
   final String? title;
   final String? subTitle;
   final String? image;
@@ -97,18 +99,18 @@ class EmptyWidget extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        if(child==null)
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: paddingMedium),
-          child: Text(
-            (subTitle ?? "create one and go on.").tr().toCapitalized(),
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontWeight: FontWeight.w600,
-              color: MyColors.cTextSubtitleLight.withOpacity(1),
+        if (child == null)
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: paddingMedium),
+            child: Text(
+              (subTitle ?? "create one and go on.").tr().toCapitalized(),
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                color: MyColors.cTextSubtitleLight.withOpacity(1),
+              ),
             ),
-          ),
-        )
+          )
         else
           child!,
       ],
@@ -246,14 +248,16 @@ class ReuseOutLinedButton extends StatelessWidget {
     required this.onPressed,
     this.txtColor = MyColors.cPrimary,
     this.txt,
-    this.borderColor =  MyColors.cPrimary,
-    this.height =  54,
+    this.borderColor = MyColors.cPrimary,
+    this.height = 54,
+    this.widget,
   }) : super(key: key);
   final VoidCallback? onPressed;
   final Color? txtColor;
   final Color? borderColor;
   final String? txt;
   final double? height;
+  final Widget? widget;
 
   @override
   Widget build(BuildContext context) {
@@ -283,13 +287,15 @@ class ReuseOutLinedButton extends StatelessWidget {
             ),
           ),
         ),
-        child: Text(
-          '$txt'.tr().toUpperCase(),
-          style: TextStyle(
-            color: txtColor,
-            fontSize: textSizeMedium,
-          ),
-        ),
+        child: txt == null
+            ? widget!
+            : Text(
+                '$txt'.tr().toUpperCase(),
+                style: TextStyle(
+                  color: txtColor,
+                  fontSize: textSizeMedium,
+                ),
+              ),
       ),
     );
   }

@@ -9,6 +9,7 @@ import 'package:lavie_web/shared/components/image_assets.dart';
 import 'package:lavie_web/shared/components/reuse_functions.dart';
 import 'package:lavie_web/shared/themes/colors.dart';
 
+import '../../../shared/components/widgets.dart';
 import '../../../shared/cubit/auth_cubit/auth_cubit.dart';
 import '../../../shared/cubit/auth_cubit/auth_states.dart';
 
@@ -109,8 +110,8 @@ class SignUpBody extends StatelessWidget {
                   ),
                   // login button
                   Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: paddingSmall,
+                    padding: const EdgeInsets.only(
+                      top: paddingSmall,
                     ),
                     child: AuthButton(
                       onPressed: () {
@@ -123,7 +124,7 @@ class SignUpBody extends StatelessWidget {
                   ),
                   // or
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: paddingLarge*2),
+                    padding: const EdgeInsets.symmetric(horizontal: paddingLarge*2,vertical: paddingLarge*2),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -154,24 +155,65 @@ class SignUpBody extends StatelessWidget {
                     ),
                   ),
                   // social button
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  Wrap(
                     children: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: Image.asset(
-                          ImagesInAssets.googleImage,
-                          width: 30,
+                      SizedBox(
+                        width: screenW(context) * .25,
+                        child: ReuseOutLinedButton(
+                          onPressed: () {},
+                          widget: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                ImagesInAssets.googleImage,
+                                width: 30,
+                              ),
+                              const SizedBox(
+                                width: paddingMedium,
+                              ),
+                              Expanded(
+                                child: Text(
+                                  'google'.tr().toCapitalized(),
+                                  style: const TextStyle(
+                                    color: MyColors.cPrimary,
+                                    fontWeight: FontWeight.bold,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                      IconButton(
-                        onPressed: () {
-                          authCubit.changeIndexOfTap(0);
-                        },
-                        icon: const FaIcon(
-                          FontAwesomeIcons.facebookF,
-                          color: MyColors.cFacebookColor,
-                          size: 30,
+                      const SizedBox(
+                        width: paddingLarge,
+                      ),
+                      SizedBox(
+                        width: screenW(context) * .25,
+                        child: ReuseOutLinedButton(
+                          onPressed: () {},
+                          widget: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Icon(
+                                FontAwesomeIcons.facebook,
+                                color: MyColors.cFacebookColor,
+                              ),
+                              const SizedBox(
+                                width: paddingMedium,
+                              ),
+                              Expanded(
+                                child: Text(
+                                  'facebook'.tr().toCapitalized(),
+                                  style: const TextStyle(
+                                    color: MyColors.cPrimary,
+                                    fontWeight: FontWeight.bold,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],
